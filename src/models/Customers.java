@@ -3,6 +3,7 @@ package models;
 public class Customers {
     private String name;
     private String origin;
+    private String species;
     private String numId;
     /*private List<Naves> naves;*/
     private String nick;
@@ -13,9 +14,10 @@ public class Customers {
     private boolean fraud;
     private boolean pirate;
 
-    public Customers(String name, String origin, String numId, String nick, String password, String email, int numWarnings, boolean license, boolean fraud, boolean pirate) {
+    public Customers(String name, String origin, String species, String numId, String nick, String password, String email, int numWarnings, boolean license, boolean fraud, boolean pirate) {
         this.name = name;
         this.origin = origin;
+        this.species = species;
         this.numId = numId;
         this.nick = nick;
         this.password = password;
@@ -40,6 +42,10 @@ public class Customers {
 
     public void setOrigin(String origin) {
         this.origin = origin;
+    }
+
+    public void setSpecies(String species) {
+        this.species = species;
     }
 
     public String getNumId() {
@@ -105,4 +111,21 @@ public class Customers {
     public void setPirate(boolean pirate) {
         this.pirate = pirate;
     }
+
+    public boolean isKromagg(){
+        if(this.species == "Kromagg"){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public boolean maxWarnings(){
+        if(this.numWarnings < 2){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 }
