@@ -1,6 +1,6 @@
 package models;
 
-public class Customers {
+public class Customers implements User{
     private String name;
     private String origin;
     private String species;

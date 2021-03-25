@@ -1,6 +1,6 @@
 package models;
 
-public class Admin {
+public class Admin implements User{
     private String name;
     private String numId;
     private String nick;
