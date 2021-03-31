@@ -1,6 +1,13 @@
+import java.util.ArrayList;
 public class Propulsion extends Ship {
-    private String[] name = {"motor de curvatura", "compresor de traza", "motor FTL", "velas solares", "motor ionico"};
-    private final static int speed = 5;
+    ArrayList <String> motors = new ArrayList <String> ();
+    motors.add ("curvature motor");
+    motors.add ("compresor de traza");
+    motors.add ("motor FTL");
+    motors.add ("velas solares");
+    motors.add ("motor ionico");
+
+    private final static int speed = 1000;
 
     public Propulsion (String name, int speed) {
     }
