@@ -1,4 +1,4 @@
-public class Weapon extends Ship {
+public class Weapon {
     private String name;
     private int power;
 
