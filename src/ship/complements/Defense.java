@@ -1,3 +1,5 @@
+package ship.complements;
+
 public abstract class Defense {
     private int damage;
 

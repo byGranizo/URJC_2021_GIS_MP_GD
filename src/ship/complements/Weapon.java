@@ -1,3 +1,5 @@
+package ship.complements;
+
 public class Weapon {
     private String name;
     private int power;
