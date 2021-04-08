@@ -1,11 +1,15 @@
 package models;
 
+import Ships.Ship;
+
+import java.util.List;
+
 public class Customers implements User{
     private String name;
     private String origin;
     private String species;
     private String numId;
-    /*private List<Naves> naves;*/
+    private List<Ship> ships;
     private String nick;
     private String password;
     private String email;
@@ -128,4 +132,15 @@ public class Customers implements User{
         }
     }
 
+    public String getSpecies() {
+        return species;
+    }
+
+    public List<Ship> getShips() {
+        return ships;
+    }
+
+    public void setShips(List<Ship> ships) {
+        this.ships = ships;
+    }
 }
