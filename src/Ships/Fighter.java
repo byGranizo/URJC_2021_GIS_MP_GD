@@ -1,5 +1,7 @@
 package Ships;
+import models.Customers;
 import ship.complements.Defense;
+import ship.complements.Propulsion;
 import ship.complements.Weapon;
 
 import java.util.ArrayList;
@@ -7,8 +9,8 @@ import java.util.ArrayList;
 
 public class Fighter extends Ship {
 
-    private Weapon[] ArrayWeapons = new Weapon[2];
-    private Defense[] ArrayDefenses = new Defense[1];
+    private Weapon[] ArrayWeapons;
+    private Defense[] ArrayDefenses;
 
     public Weapon[] getArrayWeapons() {
         return ArrayWeapons;
@@ -26,7 +28,11 @@ public class Fighter extends Ship {
         ArrayDefenses = arrayDefenses;
     }
 
-    public Fighter() {
+    public Fighter(String regNum, Customers owner, Propulsion[] arrayPropellers, int crewNum, Weapon[] arrayWeapons, Defense[] arrayDefenses) {
+
+        super(regNum, owner, arrayPropellers, crewNum);
+        ArrayWeapons = arrayWeapons;
+        ArrayDefenses = arrayDefenses;
     }
 }
 

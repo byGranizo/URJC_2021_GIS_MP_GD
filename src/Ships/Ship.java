@@ -6,7 +6,7 @@ public abstract class Ship {
 
     private String RegNum;
     private Customers Owner;
-    private Propulsion[] ArrayPropellers = new Propulsion[2];
+    private Propulsion[] ArrayPropellers;
     private int CrewNum;
 
     public String getRegNum() {
@@ -38,6 +38,13 @@ public abstract class Ship {
     }
 
     public void setCrewNum(int crewNum) {
+        CrewNum = crewNum;
+    }
+
+    public Ship(String regNum, Customers owner, Propulsion[] arrayPropellers, int crewNum) {
+        RegNum = regNum;
+        Owner = owner;
+        ArrayPropellers = arrayPropellers;
         CrewNum = crewNum;
     }
 }

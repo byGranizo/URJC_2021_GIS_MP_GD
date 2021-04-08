@@ -1,12 +1,15 @@
 package Ships;
 
+import models.Customers;
 import ship.complements.Defense;
+import ship.complements.Propulsion;
+
 import java.util.ArrayList;
 
 public class SpaceStation extends Ship {
 
     private final static int MaxPassengers = 1000;
-    private Defense[] ArrayDefenses = new Defense[3];
+    private Defense[] ArrayDefenses;
     private ArrayList<Ship> ShipList;
 
     public static int getMaxPassengers() {
@@ -39,7 +42,9 @@ public class SpaceStation extends Ship {
         ShipList.remove(S);
     }
 
-    public SpaceStation() {
-
+    public SpaceStation(String regNum, Customers owner, Propulsion[] arrayPropellers, int crewNum, Defense[] arrayDefenses, ArrayList<Ship> shipList) {
+        super(regNum, owner, arrayPropellers, crewNum);
+        ArrayDefenses = arrayDefenses;
+        ShipList = shipList;
     }
 }
