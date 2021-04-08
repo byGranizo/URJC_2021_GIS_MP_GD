@@ -1,3 +1,5 @@
+package ship.complements;
+
 import java.util.ArrayList;
 public class Propulsion {
     ArrayList<String> motors = new ArrayList<String> ();
