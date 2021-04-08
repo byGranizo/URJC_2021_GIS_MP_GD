@@ -1,10 +1,17 @@
-import java.util.ArrayList;
+package bd;
 
-public class System {
+import Offer.Offer;
+import models.Admin;
+import models.Customers;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Systems {
     //creo listas
-    private List<Customer> listCostumers = new ArrayList<Object>();
-    private List<Admin> ListAdmins = new ArrayList<Object>();
-    private List<Offer> ListOffer = new ArrayList<Object>();
+    private List<Customers> listCostumers = new ArrayList<Customers>();
+    private List<Admin> ListAdmins = new ArrayList<Admin>();
+    private List<Offer> ListOffer = new ArrayList<Offer>();
 
 
     public void LogIn(String usarname, String pasword) {
@@ -23,7 +30,7 @@ public class System {
     public void DesignateSuspects(Object Admin, Object customer){
 
     }
-    public EditNotification{
+    public void EditNotification(){
 
     }
     public void UploadComments(Object customer){
