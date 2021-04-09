@@ -1,43 +1,59 @@
 package bd;
-
 import Offer.Offer;
 import models.Admin;
 import models.Customers;
-
+import Offer.SoldOffer;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Systems {
-    //creo listas
-    private List<Customers> listCostumers = new ArrayList<Customers>();
-    private List<Admin> ListAdmins = new ArrayList<Admin>();
-    private List<Offer> ListOffer = new ArrayList<Offer>();
+    //crew list
+    private Object List;
+    private ArrayList<Customers> listCustomers = new ArrayList<>();
+    private ArrayList<Admin> listAdmins = new ArrayList<>();
+    private ArrayList<Offer> listOffer = new ArrayList<>();
+    private ArrayList<SoldOffer> listSoldOffer = new ArrayList<>();
 
+    public ArrayList<Customers> getCustomer(){
+        return listCustomers;
+    }
+    public void setlistCustomers(ArrayList<Customers> listCustomers){
+        this.listCustomers= listCustomers;
+    }
 
-    public void LogIn(String usarname, String pasword) {
+    public ArrayList<Admin> getAdmin(){
+        return listAdmins;
+    }
+    public void setlistAdmins(ArrayList<Admin> listAdmins){
+        this.listAdmins= listAdmins;
+    }
+
+    public ArrayList<Offer> getOffer(){
+        return listOffer;
+    }
+
+    public ArrayList<SoldOffer> getOfferSold(){
+        return listSoldOffer;
+    }
+
+    public void LogIn(String username, String password) {
 
     }
 
-    public void AddOffer(Object Offer) {
+    public void AddOffer(Object offer) {
 
     }
     public void FindOffer(Object ship){
 
     }
-    public void ReviewOffer(Object Admin, Object Offer){
+    public void ReviewOffer(Object admin, Object offer){
 
     }
-    public void DesignateSuspects(Object Admin, Object customer){
-
-    }
-    public void EditNotification(){
+    public void DesignateSuspects(Object admin, Object customer){
 
     }
     public void UploadComments(Object customer){
 
     }
 }
-
-
 
 
