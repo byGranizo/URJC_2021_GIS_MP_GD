@@ -9,14 +9,14 @@ import java.util.ArrayList;
 
 public class Destroyer extends Ship {
 
-    private ArrayList<Weapon> ArrayWeapons;
+    private Weapon[] ArrayWeapons;
     private Defense[] ArrayDefenses;
 
-    public ArrayList<Weapon> getArrayWeapons() {
+    public Weapon[] getArrayWeapons() {
         return ArrayWeapons;
     }
 
-    public void setArrayWeapons(ArrayList<Weapon> arrayWeapons) {
+    public void setArrayWeapons(Weapon[] arrayWeapons) {
         ArrayWeapons = arrayWeapons;
     }
 
@@ -28,7 +28,8 @@ public class Destroyer extends Ship {
         ArrayDefenses = arrayDefenses;
     }
 
-    public Destroyer(String regNum, Customers owner, Propulsion[] arrayPropellers, int crewNum, ArrayList<Weapon> arrayWeapons, Defense[] arrayDefenses) {
+    public Destroyer(String regNum, Customers owner, Propulsion[] arrayPropellers, int crewNum,
+                     Weapon[] arrayWeapons, Defense[] arrayDefenses) {
         super(regNum, owner, arrayPropellers, crewNum);
         ArrayWeapons = arrayWeapons;
         ArrayDefenses = arrayDefenses;
