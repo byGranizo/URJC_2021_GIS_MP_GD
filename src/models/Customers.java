@@ -2,9 +2,10 @@ package models;
 
 import Ships.Ship;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Customers implements User{
+public class Customers implements User, Serializable {
     private String name;
     private String origin;
     private String species;
@@ -142,5 +143,9 @@ public class Customers implements User{
 
     public void setShips(List<Ship> ships) {
         this.ships = ships;
+    }
+
+    public void addShip(Ship ship){
+        this.ships.add(ship);
     }
 }

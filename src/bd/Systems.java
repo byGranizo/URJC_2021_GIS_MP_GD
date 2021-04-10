@@ -14,11 +14,11 @@ public class Systems {
     private List<Offer> ListOffer = new ArrayList<Offer>();
 
 
-    public boolean LogIn(String username, String pasword) {
-        boolean login = false;
+    public Customers LogIn(String username, String pasword) {
+        Customers login = null;
         for (Customers customer: listCostumers) {
             if(customer.getNick().equals(username) && customer.getPassword().equals(pasword)){
-                login = true;
+                login = customer;
                 break;
             }
         }
@@ -66,6 +66,22 @@ public class Systems {
 
     public void setListOffer(List<Offer> listOffer) {
         ListOffer = listOffer;
+    }
+
+    public void modifyCustomer(Customers customer){
+        for (Customers custom: listCostumers) {
+            if(customer.getNick().equals(custom.getNick())){
+                custom = customer;
+            }
+        }
+    }
+
+    public void modifyOffer(Offer offer){
+        for (Offer off: ListOffer) {
+            if(off.getId() == offer.getId()){
+                off = offer;
+            }
+        }
     }
 }
 
