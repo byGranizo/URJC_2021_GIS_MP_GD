@@ -4,10 +4,11 @@ import Offer.Offer;
 import models.Admin;
 import models.Customers;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Systems {
+public class Systems implements Serializable {
     //creo listas
     private List<Customers> listCostumers = new ArrayList<Customers>();
     private List<Admin> ListAdmins = new ArrayList<Admin>();

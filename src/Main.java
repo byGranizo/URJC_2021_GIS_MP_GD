@@ -40,15 +40,23 @@ public class Main {
                                     registerOffer(system);
                                     break;
                                 case 3:
-                                    for (Ship ship : client.getShips()) {
-                                        System.out.println(ship.getCrewNum());
-                                        System.out.println();
+                                    if(client.getShips() != null) {
+                                        for (Ship ship : client.getShips()) {
+                                            System.out.println(ship.getCrewNum());
+                                            System.out.println();
+                                        }
+                                    }else {
+                                        System.out.println("Empty");
                                     }
                                     break;
                                 case 4:
-                                    for (Offer offer : system.getListOffer()) {
-                                        System.out.println(offer.getStatus());
-                                        System.out.println();
+                                    if(system.getListOffer() != null) {
+                                        for (Offer offer : system.getListOffer()) {
+                                            System.out.println(offer.getStatus());
+                                            System.out.println();
+                                        }
+                                    }else {
+                                        System.out.println("Empty");
                                     }
                                     break;
                                 case 5:
@@ -103,6 +111,7 @@ public class Main {
         String id = (""+system.getListCostumers().size());
         Customers customers = new Customers(name,origin,spices,id,nick,pass,email,0,false,false,false);
         system.getListCostumers().add(customers);
+        Database.saveData(system);
         return customers;
     }
 
