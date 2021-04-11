@@ -111,7 +111,7 @@ public class Main {
         System.out.println("Spices: ");
         String spices = scan.nextLine();
         String id = (""+system.getListCostumers().size());
-        Customers customers = new Customers(name,origin,spices,id,nick,pass,email,0,false,false,false);
+        Customers customers = new Customers(name,origin,spices,id,ships,nick,pass,email,0,false,false,false);
         system.getListCostumers().add(customers);
         Database.saveData(system);
         return customers;
@@ -129,21 +129,25 @@ public class Main {
 
     private static void createShip(Customers customer){
         Scanner scan = new Scanner(System.in);
-        int id = customer.getShips().size();
+        int id = 0;
+        if(customer.getShips() != null) {
+            id = customer.getShips().size();
+        }
         int numPropellers = 0;
         int numWeapons = 0;
         int numDefenses = 0;
         ShipFactory ship = new ShipFactory();
-        Propulsion[] propellers = new Propulsion[0];
-        Weapon[] weapons = new Weapon[0];
+        Propulsion[] propellers = new Propulsion[1];
+        Weapon[] weapons = new Weapon[2];
         ArrayList<Ship> ships = null;
-        Defense[] defenses = new Defense[0];
+        Defense[] defenses = new Defense[1];
         boolean nextPropeller = true;
         boolean valido = true;
         String propeller = null;
         String weapon = null;
         while (nextPropeller) {
-            nextPropeller = true;
+            nextPropeller = false;
+            valido = true;
             System.out.println("Speed Propeller:");
             int speed = scan.nextInt();
             System.out.println("Propeller type:");
@@ -171,6 +175,7 @@ public class Main {
                     break;
                 default:
                     valido = false;
+                    nextPropeller = true;
                     System.out.println("Invalid Option");
             }
             Propulsion propellernew = new Propulsion(propeller,speed);
@@ -241,7 +246,7 @@ public class Main {
                 boolean nextDefense = true;
                 Defense shield = null;
                 while (nextDefense) {
-                    nextDefense = true;
+                    nextDefense = false;
                     System.out.println("Defense type:");
                     System.out.println("1. Shield");
                     System.out.println("2. Armor");
@@ -260,13 +265,15 @@ public class Main {
                             shield = new Defense.Armor(materialName,weight);
                             break;
                         default:
-                            nextDefense = false;
+                            nextDefense = true;
                             System.out.println("Invalid Option");
                     }
                 }
                 defenses[numDefenses] = shield;
                 Ship newShip = ship.createShip("ID "+id,customer,propellers,crew,weapons,defenses,ships);
                 customer.getShips().add(newShip);
+                System.out.println(newShip);
+                
             }
         }
     }
