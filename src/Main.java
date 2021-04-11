@@ -2,7 +2,9 @@ import Offer.Offer;
 import Ships.Ship;
 import bd.Database;
 import bd.Systems;
+import factory.method.ShipFactory;
 import models.Customers;
+import ship.complements.Defense;
 import ship.complements.Propulsion;
 import ship.complements.Weapon;
 
@@ -127,14 +129,21 @@ public class Main {
 
     private static void createShip(Customers customer){
         Scanner scan = new Scanner(System.in);
-        List<Propulsion> propellers = new ArrayList<>();
-        List<Weapon> weapons = new ArrayList<>();
-        List<Ship> ships = null;
+        int id = customer.getShips().size();
+        int numPropellers = 0;
+        int numWeapons = 0;
+        int numDefenses = 0;
+        ShipFactory ship = new ShipFactory();
+        Propulsion[] propellers = new Propulsion[0];
+        Weapon[] weapons = new Weapon[0];
+        ArrayList<Ship> ships = null;
+        Defense[] defenses = new Defense[0];
         boolean nextPropeller = true;
         boolean valido = true;
         String propeller = null;
         String weapon = null;
         while (nextPropeller) {
+            nextPropeller = true;
             System.out.println("Speed Propeller:");
             int speed = scan.nextInt();
             System.out.println("Propeller type:");
@@ -165,7 +174,7 @@ public class Main {
                     System.out.println("Invalid Option");
             }
             Propulsion propellernew = new Propulsion(propeller,speed);
-            propellers.add(propellernew);
+            propellers[numPropellers] = (propellernew);
             System.out.println("More Propeller?");
             System.out.println("1. yes");
             System.out.println("2. no");
@@ -206,13 +215,16 @@ public class Main {
                         System.out.println("Invalid Option");
                 }
                 Weapon weaponew = new Weapon(weapon,power);
-                weapons.add(weaponew);
+                weapons[numWeapons] = (weaponew);
                 System.out.println("More Weapons?");
                 System.out.println("1. yes");
                 System.out.println("2. no");
                 int optionMoreWeapon = scan.nextInt();
                 if(optionMoreWeapon == 2){
                     nextWeapon = false;
+                }
+                if(optionMoreWeapon == 1){
+                    nextWeapon = true;
                 }
             }
             if(validWeapons) {
@@ -221,9 +233,40 @@ public class Main {
                 System.out.println("2. no");
                 int optionShips = scan.nextInt();
                 if(optionShips == 1){
-                    ships = new ArrayList<>();
+                    if(customer.getShips() != null) {
+                        ships = new ArrayList<Ship>();
+                        /*implementar menu de coger naves*/
+                    }
                 }
-                /* Implementar crear defensas*/
+                boolean nextDefense = true;
+                Defense shield = null;
+                while (nextDefense) {
+                    nextDefense = true;
+                    System.out.println("Defense type:");
+                    System.out.println("1. Shield");
+                    System.out.println("2. Armor");
+                    switch (scan.nextInt()) {
+                        case 1:
+                            System.out.println("Energy: ");
+                            int energy = scan.nextInt();
+                            shield = new Defense.Shield(energy);
+                            break;
+                        case 2:
+                            System.out.println("Name of Material: ");
+                            String materialName = scan.nextLine();
+
+                            System.out.println("Weight: ");
+                            int weight = scan.nextInt();
+                            shield = new Defense.Armor(materialName,weight);
+                            break;
+                        default:
+                            nextDefense = false;
+                            System.out.println("Invalid Option");
+                    }
+                }
+                defenses[numDefenses] = shield;
+                Ship newShip = ship.createShip("ID "+id,customer,propellers,crew,weapons,defenses,ships);
+                customer.getShips().add(newShip);
             }
         }
     }
