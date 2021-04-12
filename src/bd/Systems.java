@@ -1,13 +1,14 @@
 package bd;
 import Offer.Offer;
+import Ships.Ship;
 import models.Admin;
 import models.Customers;
 import Offer.SoldOffer;
+import models.User;
 import java.util.ArrayList;
 
 public class Systems {
-    //crew list
-    private Object List;
+    //create list
     private ArrayList<Customers> listCustomers = new ArrayList<>();
     private ArrayList<Admin> listAdmins = new ArrayList<>();
     private ArrayList<Offer> listOffer = new ArrayList<>();
@@ -35,7 +36,7 @@ public class Systems {
         return listSoldOffer;
     }
 
-    public void LogIn(String username, String password) {
+    public void LogIn(User username, String password) {
 
 
     }
@@ -44,16 +45,17 @@ public class Systems {
         listOffer.add(offer);
 
     }
-    public void FindOffer(Object ship){
+    public void FindOffer(Ship ship){
+
 
     }
-    public void ReviewOffer(Object admin, Object offer){
+    public void ReviewOffer(Admin admin, Offer offer){
 
     }
-    public void DesignateSuspects(Object admin, Object customer){
+    public void DesignateSuspects(Admin admin, Customers customer){
 
     }
-    public void UploadComments(Object customer){
+    public void UploadComments(Customers customer){
 
     }
 }
