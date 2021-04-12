@@ -2,9 +2,10 @@ package models;
 
 import Ships.Ship;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Customers implements User{
+public class Customers implements User, Serializable {
     private String name;
     private String origin;
     private String species;
@@ -18,11 +19,12 @@ public class Customers implements User{
     private boolean fraud;
     private boolean pirate;
 
-    public Customers(String name, String origin, String species, String numId, String nick, String password, String email, int numWarnings, boolean license, boolean fraud, boolean pirate) {
+    public Customers(String name, String origin, String species, String numId, List<Ship> ships, String nick, String password, String email, int numWarnings, boolean license, boolean fraud, boolean pirate) {
         this.name = name;
         this.origin = origin;
         this.species = species;
         this.numId = numId;
+        this.ships = ships;
         this.nick = nick;
         this.password = password;
         this.email = email;
@@ -142,5 +144,9 @@ public class Customers implements User{
 
     public void setShips(List<Ship> ships) {
         this.ships = ships;
+    }
+
+    public void addShip(Ship ship){
+        this.ships.add(ship);
     }
 }

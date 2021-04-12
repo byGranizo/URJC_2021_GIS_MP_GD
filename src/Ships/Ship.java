@@ -2,7 +2,9 @@ package Ships;
 import ship.complements.Propulsion;
 import models.Customers;
 
-public abstract class Ship {
+import java.io.Serializable;
+
+public abstract class Ship implements Serializable {
 
     private String RegNum;
     private Customers Owner;

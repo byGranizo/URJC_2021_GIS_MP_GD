@@ -1,6 +1,8 @@
 package models;
 
-public class Admin implements User{
+import java.io.Serializable;
+
+public class Admin implements User, Serializable {
     private String name;
     private String numId;
     private String nick;

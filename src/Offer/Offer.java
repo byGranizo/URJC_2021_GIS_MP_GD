@@ -1,14 +1,24 @@
 package Offer;
+import java.io.Serializable;
 import java.util.Date;
 
-public class Offer {
-
+public class Offer implements Serializable {
+    private int id;
     private OfferStatus status;
     private int totalPower;
     private int totalAbsorption;
     private int price;
     //private User owner;  NO TIENE GETTERS AUN
     private Date endDate;
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public OfferStatus getStatus() {
         return status;

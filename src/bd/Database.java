@@ -45,4 +45,9 @@ public class Database {
         return object;
     }
 
+    public static boolean existsData(){
+        File file = new File("Data.out");
+        return file.exists();
+    }
+
 }
