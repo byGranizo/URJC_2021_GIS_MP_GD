@@ -4,9 +4,7 @@ import bd.Database;
 import bd.Systems;
 import factory.method.ShipFactory;
 import models.Customers;
-import ship.complements.Defense;
-import ship.complements.Propulsion;
-import ship.complements.Weapon;
+import ship.complements.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -144,8 +142,10 @@ public class Main {
         Defense[] defenses = new Defense[1];
         boolean nextPropeller = true;
         boolean valido = true;
-        String propeller = null;
-        String weapon = null;
+        //String propeller = null;
+        PropulsionType propeller;
+        //String weapon = null;
+        WeaponType weapon;
         while (nextPropeller) {
             nextPropeller = false;
             valido = true;
@@ -160,19 +160,19 @@ public class Main {
             int optionPropeller = scan.nextInt();
             switch (optionPropeller) {
                 case 1:
-                    propeller = "curvature motor";
+                    propeller = PropulsionType.CURVATURE_MOTOR;
                     break;
                 case 2:
-                    propeller = "trace compressor";
+                    propeller = PropulsionType.TRACE_COMPRESSOR;
                     break;
                 case 3:
-                    propeller = "motor FTL";
+                    propeller = PropulsionType.MOTOR_FTL;
                     break;
                 case 4:
-                    propeller = "solar sails";
+                    propeller = PropulsionType.SOLAR_SAILS;
                     break;
                 case 5:
-                    propeller = "ionic engine";
+                    propeller = PropulsionType.IONIC_ENGINE;
                     break;
                 default:
                     valido = false;
@@ -199,22 +199,22 @@ public class Main {
                 int power = scan.nextInt();
                 System.out.println("Weapons");
                 System.out.println("1. Plasma cannons");
-                System.out.println("2. Thermonuclear missiles");
+                System.out.println("2. Thermonucelar missiles");
                 System.out.println("3. Laser rays");
                 System.out.println("4. PEM");
                 int optionWeapons = scan.nextInt();
                 switch (optionWeapons) {
                     case 1:
-                        weapon = "Plasma cannons";
+                        weapon = WeaponType.PLASMA_CANNONS;
                         break;
                     case 2:
-                        weapon = "Thermonuclear missiles";
+                        weapon = WeaponType.THERMONUCLEAR_MISSILES;
                         break;
                     case 3:
-                        weapon = "Laser rays";
+                        weapon = WeaponType.LASER_RAYS;
                         break;
                     case 4:
-                        weapon = "PEM";
+                        weapon = WeaponType.PEM;
                         break;
                     default:
                         validWeapons = false;

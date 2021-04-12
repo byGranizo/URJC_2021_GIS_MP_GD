@@ -11,3 +11,10 @@ public class Weapon implements Serializable {
         this.power = power;
     }
 }
+
+public enum WeaponType{
+    PLASMA_CANNONS,
+    THERMONUCLEAR_MISSILES,
+    LASER_RAYS,
+    PEM
+}
