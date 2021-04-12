@@ -6,7 +6,7 @@ import Offer.SoldOffer;
 import java.util.ArrayList;
 
 public class Systems {
-    //crew list
+    //create list
     private Object List;
     private ArrayList<Customers> listCustomers = new ArrayList<>();
     private ArrayList<Admin> listAdmins = new ArrayList<>();
@@ -37,9 +37,11 @@ public class Systems {
 
     public void LogIn(String username, String password) {
 
+
     }
 
-    public void AddOffer(Object offer) {
+    public void AddOffer(Offer offer) {
+        listOffer.add(offer);
 
     }
     public void FindOffer(Object ship){
