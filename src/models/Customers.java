@@ -2,10 +2,11 @@ package models;
 
 import Ships.Ship;
 
+import java.io.Serializable;
 import java.util.List;
 import java.io.File;
 
-public class Customers implements User, Notify{
+public class Customers implements User, Notify , Serializable {
     private String name;
     private String origin;
     private String species;
