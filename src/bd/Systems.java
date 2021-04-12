@@ -6,7 +6,7 @@ import Offer.SoldOffer;
 import java.util.ArrayList;
 
 public class Systems {
-    //create list
+    //crew list
     private Object List;
     private ArrayList<Customers> listCustomers = new ArrayList<>();
     private ArrayList<Admin> listAdmins = new ArrayList<>();
