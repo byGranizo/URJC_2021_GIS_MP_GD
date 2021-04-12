@@ -1,6 +1,8 @@
 package Offer;
 
-public enum OfferStatus {
+import java.io.Serializable;
+
+public enum OfferStatus implements Serializable {
     APPROVED,
     SOLD,
     REJECTED,
