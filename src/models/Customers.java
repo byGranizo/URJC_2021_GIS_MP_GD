@@ -4,7 +4,7 @@ import Ships.Ship;
 
 import java.util.List;
 
-public class Customers implements User{
+public class Customers implements User, Notify{
     private String name;
     private String origin;
     private String species;
@@ -142,5 +142,9 @@ public class Customers implements User{
 
     public void setShips(List<Ship> ships) {
         this.ships = ships;
+    }
+
+    public void update (String eventType, File file) {
+        //System.out.println ("Tienes una novedad acerca de naves");
     }
 }

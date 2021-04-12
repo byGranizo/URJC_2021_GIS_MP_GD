@@ -13,6 +13,28 @@ public class Systems {
     private ArrayList<Offer> listOffer = new ArrayList<>();
     private ArrayList<SoldOffer> listSoldOffer = new ArrayList<>();
 
+    Map<String, List<Notify>> listeners = new HashMap<>();
+    public Systems (String... operations) {
+        for (String operation : operations) {
+            this.listeners.put(operation, new ArrayList<>());
+        }
+    }
+    public void subscribe(String eventType, Notify listener) {
+        List<Notify> users = listeners.get(eventType);
+        users.add(listener);
+    }
+    public void unsubscribe(String eventType, Notify listener) {
+        List<Notify> users = listeners.get(eventType);
+        users.remove(listener);
+    }
+    public void notify(String eventType, File file) {
+        List<Notify> users = listeners.get(eventType);
+        for (Notify listener : users) {
+            listener.update(eventType, file);
+        }
+    }
+
+
     public ArrayList<Customers> getCustomer(){
         return listCustomers;
     }
@@ -56,6 +78,8 @@ public class Systems {
     public void UploadComments(Object customer){
 
     }
+
+
 }
 
 
