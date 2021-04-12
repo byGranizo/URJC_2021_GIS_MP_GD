@@ -37,6 +37,7 @@ public class Main {
                             switch (optionSystem){
                                 case 1:
                                     createShip(client);
+                                    system.modifyCustomer(client);
                                     break;
                                 case 2:
                                     registerOffer(system);
@@ -272,8 +273,6 @@ public class Main {
                 defenses[numDefenses] = shield;
                 Ship newShip = ship.createShip("ID "+id,customer,propellers,crew,weapons,defenses,ships);
                 customer.getShips().add(newShip);
-                System.out.println(newShip);
-                
             }
         }
     }
