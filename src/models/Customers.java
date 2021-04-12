@@ -3,6 +3,7 @@ package models;
 import Ships.Ship;
 
 import java.util.List;
+import java.io.File;
 
 public class Customers implements User, Notify{
     private String name;
