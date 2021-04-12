@@ -1,91 +1,89 @@
 package bd;
-import java.util.ArrayList;
+
 import Offer.Offer;
 import models.Admin;
 import models.Customers;
-import Offer.SoldOffer;
-import models.Notify;
-import java.util.HashMap;
+
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.io.File;
 
-public class Systems {
-    //crew list
-    private Object List;
-    private ArrayList<Customers> listCustomers = new ArrayList<>();
-    private ArrayList<Admin> listAdmins = new ArrayList<>();
-    private ArrayList<Offer> listOffer = new ArrayList<>();
-    private ArrayList<SoldOffer> listSoldOffer = new ArrayList<>();
+public class Systems implements Serializable {
+    //creo listas
+    private List<Customers> listCostumers = new ArrayList<Customers>();
+    private List<Admin> ListAdmins = new ArrayList<Admin>();
+    private List<Offer> ListOffer = new ArrayList<Offer>();
 
 
-    Map<String, List<Notify>> listeners = new HashMap<>();
-    public Systems (String... operations) {
-        for (String operation : operations) {
-            this.listeners.put(operation, new ArrayList<>());
+    public Customers LogIn(String username, String pasword) {
+        Customers login = null;
+        for (Customers customer: listCostumers) {
+            if(customer.getNick().equals(username) && customer.getPassword().equals(pasword)){
+                login = customer;
+                break;
+            }
         }
-    }
-    public void subscribe(String eventType, Notify listener) {
-        List<Notify> users = listeners.get(eventType);
-        users.add(listener);
-    }
-    public void unsubscribe(String eventType, Notify listener) {
-        List<Notify> users = listeners.get(eventType);
-        users.remove(listener);
-    }
-    public void notify(String eventType, File file) {
-        List<Notify> users = listeners.get(eventType);
-        for (Notify listener : users) {
-            listener.update(eventType, file);
-        }
+        return login;
     }
 
-
-    public ArrayList<Customers> getCustomer(){
-        return listCustomers;
-    }
-    public void setlistCustomers(ArrayList<Customers> listCustomers){
-        this.listCustomers= listCustomers;
-    }
-
-    public ArrayList<Admin> getAdmin(){
-        return listAdmins;
-    }
-    public void setlistAdmins(ArrayList<Admin> listAdmins){
-        this.listAdmins= listAdmins;
-    }
-
-    public ArrayList<Offer> getOffer(){
-        return listOffer;
-    }
-
-    public ArrayList<SoldOffer> getOfferSold(){
-        return listSoldOffer;
-    }
-
-    public void LogIn(String username, String password) {
-
-
-    }
-
-    public void AddOffer(Offer offer) {
-        listOffer.add(offer);
+    public void AddOffer(Object Offer) {
 
     }
     public void FindOffer(Object ship){
 
     }
-    public void ReviewOffer(Object admin, Object offer){
+    public void ReviewOffer(Object Admin, Object Offer){
 
     }
-    public void DesignateSuspects(Object admin, Object customer){
+    public void DesignateSuspects(Object Admin, Object customer){
+
+    }
+    public void EditNotification(){
 
     }
     public void UploadComments(Object customer){
 
     }
 
+    public List<Customers> getListCostumers() {
+        return listCostumers;
+    }
 
+    public void setListCostumers(List<Customers> listCostumers) {
+        this.listCostumers = listCostumers;
+    }
+
+    public List<Admin> getListAdmins() {
+        return ListAdmins;
+    }
+
+    public void setListAdmins(List<Admin> listAdmins) {
+        ListAdmins = listAdmins;
+    }
+
+    public List<Offer> getListOffer() {
+        return ListOffer;
+    }
+
+    public void setListOffer(List<Offer> listOffer) {
+        ListOffer = listOffer;
+    }
+
+    public void modifyCustomer(Customers customer){
+        for (Customers custom: listCostumers) {
+            if(customer.getNick().equals(custom.getNick())){
+                custom = customer;
+            }
+        }
+    }
+
+    public void modifyOffer(Offer offer){
+        for (Offer off: ListOffer) {
+            if(off.getId() == offer.getId()){
+                off = offer;
+            }
+        }
+    }
 }
 
 
