@@ -8,20 +8,20 @@ import Refactor.Ship.Ship;
 import java.util.ArrayList;
 
 public class DestroyerShip extends Ship {
-    private ArrayList<Weapon> weapons;
+    private Weapon[] weapons;
     private Defense[] defense;
 
-    public DestroyerShip(String nRegister, Engine[] engines, int crewSize, ArrayList<Weapon> weapons, Defense[] defense) {
+    public DestroyerShip(String nRegister, Engine[] engines, int crewSize, Weapon[] weapons, Defense[] defense) {
         super(nRegister, engines, crewSize);
         this.weapons = weapons;
         this.defense = defense;
     }
 
-    public ArrayList<Weapon> getWeapons() {
+    public Weapon[] getWeapons() {
         return weapons;
     }
 
-    public void setWeapons(ArrayList<Weapon> weapons) {
+    public void setWeapons(Weapon[] weapons) {
         this.weapons = weapons;
     }
 

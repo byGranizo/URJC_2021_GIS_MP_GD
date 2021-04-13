@@ -12,10 +12,9 @@ public class SpaceStationShip extends Ship {
     private ArrayList<Ship> hangar;
     private Defense[] defense;
 
-    public SpaceStationShip(String nRegister, Engine[] engines, int crewSize, int maxPassegers, ArrayList<Ship> hangar, Defense[] defense) {
+    public SpaceStationShip(String nRegister, Engine[] engines, int crewSize, int maxPassegers, Defense[] defense) {
         super(nRegister, engines, crewSize);
         this.maxPassegers = maxPassegers;
-        this.hangar = hangar;
         this.defense = defense;
     }
 
