@@ -2,7 +2,6 @@ package Refactor.Ship.Types;
 
 import Refactor.Ship.Addons.Defense;
 import Refactor.Ship.Addons.Engine;
-import Refactor.Ship.Addons.Weapon;
 import Refactor.Ship.Ship;
 
 import java.util.ArrayList;
@@ -14,6 +13,7 @@ public class SpaceStationShip extends Ship {
 
     public SpaceStationShip(String nRegister, Engine[] engines, int crewSize, int maxPassegers, Defense[] defense) {
         super(nRegister, engines, crewSize);
+        this.hangar = new ArrayList<Ship>();
         this.maxPassegers = maxPassegers;
         this.defense = defense;
     }
@@ -40,5 +40,10 @@ public class SpaceStationShip extends Ship {
 
     public void setDefense(Defense[] defense) {
         this.defense = defense;
+    }
+
+
+    public void addShipToHangar(Ship ship){
+        hangar.add(ship);
     }
 }

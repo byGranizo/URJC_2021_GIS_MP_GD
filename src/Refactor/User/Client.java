@@ -11,11 +11,11 @@ public class Client extends User {
     private ArrayList<Ship> ships;
     private int nWarnings;
     private boolean piracySuspect;
-    private int fraudSuspect;
+    private boolean fraudSuspect;
     private boolean specialLicense;
     private ArrayList<Review> reviews;
 
-    public Client(String id, String fullName, String user, String mail, UserRole role, String password, String originPlanet, String race, ArrayList<Ship> ships, int nWarnings, boolean piracySuspect, int fraudSuspect, boolean specialLicense, ArrayList<Review> reviews) {
+    public Client(String id, String fullName, String user, String mail, UserRole role, String password, String originPlanet, String race, ArrayList<Ship> ships, int nWarnings, boolean piracySuspect, boolean fraudSuspect, boolean specialLicense, ArrayList<Review> reviews) {
         super(id, fullName, user, mail, role, password);
         this.originPlanet = originPlanet;
         this.race = race;
@@ -25,6 +25,18 @@ public class Client extends User {
         this.fraudSuspect = fraudSuspect;
         this.specialLicense = specialLicense;
         this.reviews = reviews;
+    }
+
+    public Client(String id, String fullName, String user, String mail, UserRole role, String password, String originPlanet, String race, boolean specialLicense) {
+        super(id, fullName, user, mail, role, password);
+        this.originPlanet = originPlanet;
+        this.race = race;
+        this.ships =  new ArrayList<>();
+        this.nWarnings = 0;
+        this.piracySuspect = false;
+        this.fraudSuspect = false;
+        this.specialLicense = specialLicense;
+        this.reviews = new ArrayList<>();
     }
 
     public String getOriginPlanet() {
@@ -67,11 +79,11 @@ public class Client extends User {
         this.piracySuspect = piracySuspect;
     }
 
-    public int getFraudSuspect() {
+    public boolean getFraudSuspect() {
         return fraudSuspect;
     }
 
-    public void setFraudSuspect(int fraudSuspect) {
+    public void setFraudSuspect(boolean fraudSuspect) {
         this.fraudSuspect = fraudSuspect;
     }
 

@@ -3,15 +3,15 @@ package Refactor.User;
 public abstract class User {
     private String id;
     private String fullName;
-    private String user;
+    private String username;
     private String mail;
     private UserRole role;
     private String password;
 
-    public User(String id, String fullName, String user, String mail, UserRole role, String password) {
+    public User(String id, String fullName, String username, String mail, UserRole role, String password) {
         this.id = id;
         this.fullName = fullName;
-        this.user = user;
+        this.username = username;
         this.mail = mail;
         this.role = role;
         this.password = password;
@@ -33,12 +33,12 @@ public abstract class User {
         this.fullName = fullName;
     }
 
-    public String getUser() {
-        return user;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getMail() {
