@@ -5,7 +5,7 @@ import bd.Systems;
 import factory.method.ShipFactory;
 import models.Customers;
 import ship.complements.*;
-
+import Offer.OfferStatus;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -143,9 +143,9 @@ public class Main {
         boolean nextPropeller = true;
         boolean valido = true;
         //String propeller = null;
-        PropulsionType propeller;
+        PropulsionType propeller = null;
         //String weapon = null;
-        WeaponType weapon;
+        WeaponType weapon = null;
         while (nextPropeller) {
             nextPropeller = false;
             valido = true;
@@ -295,8 +295,7 @@ public class Main {
         System.out.println("2. SOLD");
         System.out.println("3. REJECTED");
         System.out.println("4. NOT_REVIEWED");
-        /* No se usar los Enum*/
-        /*switch (scan.nextInt()){
+        switch (scan.nextInt()){
             case 1:
                 newOffer.setStatus(OfferStatus.APPROVED);
                 break;
@@ -311,8 +310,9 @@ public class Main {
                 break;
             default:
                 System.out.println("Invalid Option");
-        }*/
+        }
         systems.getListOffer().add(newOffer);
+        Database.saveData(systems);
     }
 
     private static Ship selectShips(Customers client){

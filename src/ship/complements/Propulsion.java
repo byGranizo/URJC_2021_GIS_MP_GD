@@ -1,26 +1,29 @@
 package ship.complements;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 public class Propulsion implements Serializable {
-    ArrayList<String> motors = new ArrayList<String> ();
+    private  PropulsionType name;
+    private int speed;
 
-    private final static int speed = 1000;
-
-    public Propulsion (String name, int speed) {
-        motors.add("curvature motor");
-        motors.add("trace compressor");
-        motors.add("motor FTL");
-        motors.add("solar sails");
-        motors.add("ionic engine");
+    public Propulsion(PropulsionType name, int speed) {
+        this.name = name;
+        this.speed = speed;
     }
 
+    public PropulsionType getName() {
+        return name;
+    }
+
+    public void setName(PropulsionType name) {
+        this.name = name;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
 }
 
-public enum PropulsionType{
-    CURVATURE_MOTOR,
-    TRACE_COMPRESSOR,
-    MOTOR_FTL,
-    SOLAR_SAILS,
-    IONIC_ENGINE
-}
