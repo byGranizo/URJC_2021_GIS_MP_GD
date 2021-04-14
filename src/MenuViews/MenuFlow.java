@@ -261,6 +261,9 @@ public class MenuFlow {
             System.out.println("Total power:");
             int power = scan.nextInt();
 
+            System.out.println("Total absortion:");
+            int absortion = scan.nextInt();
+
             System.out.println("Price:");
             int price = scan.nextInt();
 
@@ -272,7 +275,7 @@ public class MenuFlow {
             dueDate = sdf.parse(dateStr);
 
 
-            Offer offer = new Offer(offerId, OfferStatus.NOT_REVIEWED, shipsList, price, power, dueDate, user);
+            Offer offer = new Offer(offerId, OfferStatus.NOT_REVIEWED, shipsList, price, power, absortion, dueDate, user);
 
             Systems.getInstance().addOfferToList(offer);
         } catch (ParseException e) {

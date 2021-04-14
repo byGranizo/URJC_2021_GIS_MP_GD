@@ -12,14 +12,9 @@ public class SoldOffer extends Offer implements Serializable {
     private Date saleDate;
     private User buyer;
 
-    public SoldOffer(String id, OfferStatus status, ArrayList<Ship> shipsList, int price, int power, Date dueDate, Client seller, Date saleDate, User buyer) {
-        super(id, status, shipsList, price, power, dueDate, seller);
-        this.saleDate = saleDate;
-        this.buyer = buyer;
-    }
 
     public SoldOffer(Offer offer, Date saleDate, User buyer) {
-        super(offer.getId(), offer.getStatus(), offer.getShipsList(), offer.getPrice(), offer.getPower(), offer.getDueDate(), offer.getSeller());
+        super(offer.getId(), offer.getStatus(), offer.getShipsList(), offer.getPrice(), offer.getPower(), offer.getAbsortion(), offer.getDueDate(), offer.getSeller());
         this.saleDate = saleDate;
         this.buyer = buyer;
     }

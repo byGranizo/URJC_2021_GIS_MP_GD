@@ -185,6 +185,7 @@ public final class Systems implements Serializable {
                 shipList = offer.getShipsList();
 
                 addShipListToUser(shipList);
+                deleteShipsFromUser(shipList, offer.getSeller());
 
                 return offer.getSeller().getUsername();
             }
@@ -192,6 +193,25 @@ public final class Systems implements Serializable {
 
         return null;
 
+    }
+
+    public void deleteShipsFromUser(ArrayList<Ship> shipList, Client seller){
+        User user;
+        Client client;
+        for(int i=0;i<users.size();i++){
+            user = users.get(i);
+            if (user.getUsername().equals(seller.getUsername()) && user.getRole() == UserRole.CLIENT){
+                client = (Client) user;
+
+                ArrayList<Ship> clientShipList = client.getShips();
+                for(Ship ship : shipList){
+                    clientShipList.remove(ship);
+                }
+
+                users.set(i, client);
+                return;
+            }
+        }
     }
 
     public void addShipListToUser(ArrayList<Ship> shipList){
@@ -212,6 +232,8 @@ public final class Systems implements Serializable {
         }
     }
 
+
+
     public void addReviewToUser(String username, Review review){
         User user;
         Client client;
@@ -229,4 +251,6 @@ public final class Systems implements Serializable {
             }
         }
     }
+
+
 }
