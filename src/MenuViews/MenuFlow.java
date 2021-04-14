@@ -10,7 +10,6 @@ import User.Client;
 import User.User;
 import User.UserCreator;
 import User.UserRole;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -101,7 +100,16 @@ public class MenuFlow {
 
             switch (option) {
                 case 1:
-                    searchMenu();
+                    Client user = (Client) Systems.getInstance().getCurrentUser();
+                    if(user.getRace() == "Kromagg"){
+                        if(user.isSpecialLicense()){
+                            searchMenu();
+                        }else {
+                            System.out.println("You don´t have license");
+                        }
+                    }else {
+                        searchMenu();
+                    }
                     break;
                 case 2:
                     createOffer();
@@ -130,7 +138,7 @@ public class MenuFlow {
 
             switch (option) {
                 case 1:
-
+                    
                     break;
                 case 2:
 
