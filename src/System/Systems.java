@@ -28,6 +28,12 @@ public final class Systems implements Serializable {
         this.soldOffers = soldOffers;
     }
 
+    private Systems(){
+        this.users = new ArrayList<User>();
+        this.offers = new ArrayList<Offer>();
+        this.soldOffers = new ArrayList<SoldOffer>();
+    }
+
     public static Systems getInstance(ArrayList<User> users, ArrayList<Offer> offers, ArrayList<SoldOffer> soldOffers){
         if(instance == null){
             instance = new Systems(users, offers, soldOffers);
@@ -35,9 +41,17 @@ public final class Systems implements Serializable {
         return instance;
     }
 
+    public static void setInstance(Systems systems){
+        instance = systems;
+    }
+
     public static Systems getInstance(){
+        if(instance == null){
+            instance = new Systems();
+        }
         return instance;
     }
+
 
     public ArrayList<User> getUsers() {
         return users;

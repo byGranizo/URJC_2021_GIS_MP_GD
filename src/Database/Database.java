@@ -1,14 +1,15 @@
 package Database;
 
 import java.io.*;
+import System.Systems;
 
 public class Database {
-    public static void saveData(Systems object){
+    public static void saveData(){
         FileOutputStream fos = null;
         try {
             fos = new FileOutputStream("Data.out");
             ObjectOutputStream ous = new ObjectOutputStream(fos);
-            ous.writeObject(object);
+            ous.writeObject(Systems.getInstance());
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
         } catch (IOException ex) {
@@ -22,13 +23,12 @@ public class Database {
         }
     }
 
-    public static Systems loadData(){
+    public static void loadData(){
         FileInputStream fis = null;
-        Systems object = null;
         try {
             fis = new FileInputStream("Data.out");
             ObjectInputStream ois = new ObjectInputStream(fis);
-            object = (Systems)ois.readObject();
+            Systems.setInstance((Systems) ois.readObject());
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
         } catch (IOException ex) {
@@ -42,7 +42,6 @@ public class Database {
                 ex.printStackTrace();
             }
         }
-        return object;
     }
 
     public static boolean existsData(){

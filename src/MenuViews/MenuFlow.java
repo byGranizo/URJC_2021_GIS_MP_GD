@@ -1,5 +1,6 @@
 package MenuViews;
 
+import Database.Database;
 import Offer.Offer;
 import Offer.OfferStatus;
 import Offer.Review;
@@ -220,6 +221,7 @@ public class MenuFlow {
         if(role != null){
             User user = UserCreator.createUser(role);
             Systems.getInstance().addUserToList(user);
+            Database.saveData();
         }
 
     }
