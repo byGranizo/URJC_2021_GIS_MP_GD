@@ -13,15 +13,17 @@ public class Offer implements Serializable {
     private ArrayList<Ship> shipsList;
     private int price;
     private int power;
+    private int absortion;
     private Date dueDate;
     private Client seller;
 
-    public Offer(String id, OfferStatus status, ArrayList<Ship> shipsList, int price, int power, Date dueDate, Client seller) {
+    public Offer(String id, OfferStatus status, ArrayList<Ship> shipsList, int price, int power, int absortion, Date dueDate, Client seller) {
         this.id = id;
         this.status = status;
         this.shipsList = shipsList;
         this.price = price;
         this.power = power;
+        this.absortion = absortion;
         this.dueDate = dueDate;
         this.seller = seller;
     }
@@ -80,5 +82,13 @@ public class Offer implements Serializable {
 
     public void setSeller(Client seller) {
         this.seller = seller;
+    }
+
+    public int getAbsortion() {
+        return absortion;
+    }
+
+    public void setAbsortion(int absortion) {
+        this.absortion = absortion;
     }
 }

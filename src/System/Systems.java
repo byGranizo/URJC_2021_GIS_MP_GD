@@ -10,6 +10,7 @@ import User.User;
 import User.UserRole;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -185,6 +186,7 @@ public final class Systems implements Serializable {
                 shipList = offer.getShipsList();
 
                 addShipListToUser(shipList);
+                deleteShipsFromUser(shipList, offer.getSeller());
 
                 return offer.getSeller().getUsername();
             }
@@ -192,6 +194,25 @@ public final class Systems implements Serializable {
 
         return null;
 
+    }
+
+    public void deleteShipsFromUser(ArrayList<Ship> shipList, Client seller){
+        User user;
+        Client client;
+        for(int i=0;i<users.size();i++){
+            user = users.get(i);
+            if (user.getUsername().equals(seller.getUsername()) && user.getRole() == UserRole.CLIENT){
+                client = (Client) user;
+
+                ArrayList<Ship> clientShipList = client.getShips();
+                for(Ship ship : shipList){
+                    clientShipList.remove(ship);
+                }
+
+                users.set(i, client);
+                return;
+            }
+        }
     }
 
     public void addShipListToUser(ArrayList<Ship> shipList){
@@ -256,4 +277,22 @@ public final class Systems implements Serializable {
             }
         }
     }
+
+    public ArrayList<Offer> getOfferOfshipType(String type){
+        ArrayList<Offer> offersOfType = new ArrayList<>();
+
+        offerLoop:
+        for (Offer offer : offers){
+
+            for(Ship ship:offer.getShipsList()){
+                if (ship.getClass().getSimpleName().equals(type)){
+                    offersOfType.add(offer);
+                    continue offerLoop;
+                }
+
+            }
+        }
+    }
+
+
 }
