@@ -1,10 +1,16 @@
 package Refactor.System;
 
 import Refactor.Offer.Offer;
+import Refactor.Offer.OfferStatus;
+import Refactor.Offer.Review;
 import Refactor.Offer.SoldOffer;
+import Refactor.Ship.Ship;
+import Refactor.User.Client;
 import Refactor.User.User;
+import Refactor.User.UserRole;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public final class Systems {
     private static Systems instance;
@@ -76,5 +82,136 @@ public final class Systems {
 
     public void addUserToList(User user){
         users.add(user);
+    }
+
+    public void addOfferToList(Offer offer){
+        offers.add(offer);
+    }
+
+    public void setUserAsPirate(String username){
+        User user;
+        Client client;
+        for(int i=0;i<users.size();i++){
+            user = users.get(i);
+            if (user.getUsername().equals(username) && user.getRole() == UserRole.CLIENT){
+                client = (Client) user;
+                client.setPiracySuspect(true);
+                users.set(i, client);
+                return;
+            }
+        }
+    }
+
+    public void incrementUserWarning(String username){
+        User user;
+        Client client;
+        for(int i=0;i<users.size();i++){
+            user = users.get(i);
+            if (user.getUsername().equals(username) && user.getRole() == UserRole.CLIENT){
+                client = (Client) user;
+                client.setnWarnings(client.getnWarnings() + 1);
+                users.set(i, client);
+                return;
+            }
+        }
+    }
+
+    public void setUserAsFraud(String username){
+        User user;
+        Client client;
+        for(int i=0;i<users.size();i++){
+            user = users.get(i);
+            if (user.getUsername().equals(username) && user.getRole() == UserRole.CLIENT){
+                client = (Client) user;
+                client.setFraudSuspect(true);
+                users.set(i, client);
+                return;
+            }
+        }
+    }
+
+    public void approveOffer(String id){
+        Offer offer;
+        for(int i=0;i<offers.size();i++){
+            offer = offers.get(i);
+            if (offer.getId().equals(id)){
+                offer.setStatus(OfferStatus.APPROVED);
+                offers.set(i, offer);
+                return;
+            }
+        }
+    }
+
+    public void rejectOffer(String id){
+        Offer offer;
+        for(int i=0;i<offers.size();i++){
+            offer = offers.get(i);
+            if (offer.getId().equals(id)){
+                incrementUserWarning(offer.getSeller().getUsername());
+                offers.remove(i);
+                return;
+            }
+        }
+    }
+
+    public String buyOffer(String offerId){
+        ArrayList<Ship> shipList;
+
+        Offer offer;
+        for(int i=0;i<offers.size();i++){
+            offer = offers.get(i);
+            if (offer.getId().equals(offerId)){
+                offers.remove(i);
+                offer.setStatus(OfferStatus.SOLD);
+
+                SoldOffer soldOffer = new SoldOffer(offer, new Date(), getCurrentUser());
+                soldOffers.add(soldOffer);
+
+                shipList = offer.getShipsList();
+
+                addShipListToUser(shipList);
+
+                return offer.getSeller().getUsername();
+            }
+        }
+
+        return null;
+
+    }
+
+    public void addShipListToUser(ArrayList<Ship> shipList){
+        User user;
+        Client client;
+        for(int i=0;i<users.size();i++){
+            user = users.get(i);
+            if (user.getUsername().equals(currentUser.getUsername()) && user.getRole() == UserRole.CLIENT){
+                client = (Client) user;
+
+                ArrayList<Ship> clientShipList = client.getShips();
+                clientShipList.addAll(shipList);
+                client.setShips(clientShipList);
+
+                users.set(i, client);
+                return;
+            }
+        }
+    }
+
+    public void addReviewToUser(String username, Review review){
+        User user;
+        Client client;
+        for(int i=0;i<users.size();i++){
+            user = users.get(i);
+            if (user.getUsername().equals(username) && user.getRole() == UserRole.CLIENT){
+                client = (Client) user;
+
+                ArrayList<Review> clientReviews = client.getReviews();
+                clientReviews.add(review);
+                client.setReviews(clientReviews);
+
+                users.set(i, client);
+                return;
+            }
+        }
     }
 }

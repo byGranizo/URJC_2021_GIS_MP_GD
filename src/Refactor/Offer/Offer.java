@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Offer {
+    private String id;
     private OfferStatus status;
     private ArrayList<Ship> shipsList;
     private int price;
@@ -14,13 +15,22 @@ public class Offer {
     private Date dueDate;
     private Client seller;
 
-    public Offer(OfferStatus status, ArrayList<Ship> shipsList, int price, int power, Date dueDate, Client seller) {
+    public Offer(String id, OfferStatus status, ArrayList<Ship> shipsList, int price, int power, Date dueDate, Client seller) {
+        this.id = id;
         this.status = status;
         this.shipsList = shipsList;
         this.price = price;
         this.power = power;
         this.dueDate = dueDate;
         this.seller = seller;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public OfferStatus getStatus() {

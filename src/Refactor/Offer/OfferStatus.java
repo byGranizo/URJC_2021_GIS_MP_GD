@@ -1,8 +1,7 @@
 package Refactor.Offer;
 
 public enum OfferStatus {
-    REVIEWED,
+    NOT_REVIEWED,
     APPROVED,
-    REJECTED,
     SOLD
 }
