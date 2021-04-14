@@ -1,24 +1,44 @@
 package Offer;
+
+import Ship.Ship;
+import User.Client;
+import User.User;
+
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 
-public class SoldOffer extends Offer {
-    private Date soldDate;
-    //private User buyer;
-    private String comment;
+public class SoldOffer extends Offer implements Serializable {
+    private Date saleDate;
+    private User buyer;
 
-    public Date getSoldDate() {
-        return soldDate;
+    public SoldOffer(String id, OfferStatus status, ArrayList<Ship> shipsList, int price, int power, Date dueDate, Client seller, Date saleDate, User buyer) {
+        super(id, status, shipsList, price, power, dueDate, seller);
+        this.saleDate = saleDate;
+        this.buyer = buyer;
     }
 
-    public void setSoldDate(Date soldDate) {
-        this.soldDate = soldDate;
+    public SoldOffer(Offer offer, Date saleDate, User buyer) {
+        super(offer.getId(), offer.getStatus(), offer.getShipsList(), offer.getPrice(), offer.getPower(), offer.getDueDate(), offer.getSeller());
+        this.saleDate = saleDate;
+        this.buyer = buyer;
     }
 
-    public String getComment() {
-        return comment;
+    public Date getSaleDate() {
+        return saleDate;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setSaleDate(Date saleDate) {
+        this.saleDate = saleDate;
     }
+
+    public User getBuyer() {
+        return buyer;
+    }
+
+    public void setBuyer(User buyer) {
+        this.buyer = buyer;
+    }
+
+
 }
