@@ -10,6 +10,7 @@ import User.User;
 import User.UserRole;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -248,6 +249,22 @@ public final class Systems implements Serializable {
 
                 users.set(i, client);
                 return;
+            }
+        }
+    }
+
+    public ArrayList<Offer> getOfferOfshipType(String type){
+        ArrayList<Offer> offersOfType = new ArrayList<>();
+
+        offerLoop:
+        for (Offer offer : offers){
+
+            for(Ship ship:offer.getShipsList()){
+                if (ship.getClass().getSimpleName().equals(type)){
+                    offersOfType.add(offer);
+                    continue offerLoop;
+                }
+
             }
         }
     }

@@ -138,7 +138,7 @@ public class MenuFlow {
 
             switch (option) {
                 case 1:
-                    
+                    searOfferByType();
                     break;
                 case 2:
 
@@ -300,6 +300,43 @@ public class MenuFlow {
         Systems.getInstance().addReviewToUser(sellerUsername, review);
     }
 
+    public static void searOfferByType(){
+        Scanner scan = new Scanner(System.in);
 
+        System.out.println("Choose an type:");
+
+        System.out.println("1. Fighter");
+        System.out.println("2. Cargo");
+        System.out.println("3. Destroyer");
+        System.out.println("4. Space Station");
+
+        int typeInt = scan.nextInt();
+        String type = "";
+
+
+
+        switch (typeInt){
+            case 1:
+                type = "FighterShip";
+                break;
+            case 2:
+                type = "CargoShip";
+                break;
+            case 3:
+                type = "DestroyerShip";
+                break;
+            case 4:
+                type = "SpaceStationShip";
+                break;
+
+        }
+
+        ArrayList<Offer> offers = Systems.getInstance().getOfferOfshipType(type);
+
+        for (Offer offer : offers){
+            System.out.println(offer.getId() + " - " + offer.getPrice());
+        }
+
+    }
 
 }
