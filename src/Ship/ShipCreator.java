@@ -235,13 +235,13 @@ public class ShipCreator implements Serializable {
             case 2:
                 System.out.println("Absorption:");
                 absorption = scan.nextInt();
-
+                scan.nextLine();
                 System.out.println("Material:");
                 String material = scan.nextLine();
 
                 System.out.println("Extra weight:");
                 int extraWeight = scan.nextInt();
-
+                scan.nextLine();
                 defense = new Armor(absorption, material, extraWeight);
                 break;
         }

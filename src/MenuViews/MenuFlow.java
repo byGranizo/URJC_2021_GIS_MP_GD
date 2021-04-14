@@ -5,6 +5,7 @@ import Offer.Offer;
 import Offer.OfferStatus;
 import Offer.Review;
 import Ship.Ship;
+import Ship.ShipCreator;
 import System.Systems;
 import User.Client;
 import User.User;
@@ -15,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
+import Ship.ShipType;
 
 public class MenuFlow {
     public static void executeLoginMenu(){
@@ -89,12 +91,15 @@ public class MenuFlow {
     public static void executeClientMenu(){
         Scanner scan = new Scanner(System.in);
         int option = -1;
-        while(option != 3){
+        while(option != 6){
             System.out.println("Choose and option:");
 
             System.out.println("1. Search and buy");
             System.out.println("2. Create offer");
-            System.out.println("3. Exit");
+            System.out.println("3. Create Ship");
+            System.out.println("4. View my Ships");
+            System.out.println("5. View my Ships");
+            System.out.println("6. Exit");
 
             option = scan.nextInt();
 
@@ -115,12 +120,80 @@ public class MenuFlow {
                     createOffer();
                     break;
                 case 3:
+                    registerShip();
+                    break;
+                case 4:
+                    ArrayList<Ship> ships = Systems.getInstance().getShipListToUser();
+                    if(ships != null){
+                        for (Ship ship : ships ) {
+                            System.out.println("Id: "+ship.getnRegister());
+                            System.out.println("Crew size: "+ship.getCrewSize());
+                            System.out.println("Engines: "+ship.getEngines().length);
+                            System.out.println("Type: "+ship.getClass().getSimpleName());
+                            System.out.println();
+                        }
+                    }
+                    break;
+                case 5:
+                    ArrayList<Offer> offerlist = Systems.getInstance().getOfferToUser();
+                    if(offerlist != null){
+                        for (Offer offe : offerlist ) {
+                            System.out.println("Id: "+offe.getId());
+                            System.out.println("Status: "+offe.getStatus());
+                            System.out.println("Price: "+offe.getPrice());
+                            System.out.println("Date: "+offe.getDueDate());
+                            System.out.println("Power: "+offe.getPower());
+                            System.out.println("Ship List:");
+                            if( offe.getShipsList() != null) {
+                                for (Ship ship : offe.getShipsList()) {
+                                    System.out.println("Id: " + ship.getnRegister());
+                                    System.out.println("Crew size: " + ship.getCrewSize());
+                                    System.out.println("Engines: " + ship.getEngines().length);
+                                    System.out.println("Type: " + ship.getClass().getSimpleName());
+                                    System.out.println();
+                                }
+                            }
+                            System.out.println();
+                        }
+                    }
+                    break;
+                case 6:
                     System.out.println("Bye");
                     break;
-
             }
         }
 
+    }
+
+    private static  void registerShip(){
+        Scanner scan = new Scanner(System.in);
+        ArrayList<Ship> ships = new ArrayList<Ship>();
+        System.out.println("Choose and option:");
+        System.out.println("1. FIGHTER");
+        System.out.println("2. DESTROYER");
+        System.out.println("3. CARGO");
+        System.out.println("4. SPACE_STATION");
+        switch (scan.nextInt()){
+            case 1:
+                ships.add(ShipCreator.createShip(ShipType.FIGHTER));
+                Systems.getInstance().addShipListToUser(ships);
+                break;
+            case 2:
+                ships.add(ShipCreator.createShip(ShipType.DESTROYER));
+                Systems.getInstance().addShipListToUser(ships);
+                break;
+            case 3:
+                ships.add(ShipCreator.createShip(ShipType.CARGO));
+                Systems.getInstance().addShipListToUser(ships);
+                break;
+            case 4:
+                ships.add(ShipCreator.createShip(ShipType.SPACE_STATION));
+                Systems.getInstance().addShipListToUser(ships);
+                break;
+            default:
+                System.out.println("Invalid Option");
+        }
+        Database.saveData();
     }
 
     public static void searchMenu(){
@@ -138,7 +211,7 @@ public class MenuFlow {
 
             switch (option) {
                 case 1:
-                    
+
                     break;
                 case 2:
 
@@ -275,6 +348,7 @@ public class MenuFlow {
             Offer offer = new Offer(offerId, OfferStatus.NOT_REVIEWED, shipsList, price, power, dueDate, user);
 
             Systems.getInstance().addOfferToList(offer);
+            Database.saveData();
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -295,6 +369,7 @@ public class MenuFlow {
         Review review = new Review(comment, points);
 
         Systems.getInstance().addReviewToUser(sellerUsername, review);
+        Database.saveData();
     }
 
 
