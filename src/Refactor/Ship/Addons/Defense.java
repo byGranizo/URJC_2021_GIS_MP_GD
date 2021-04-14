@@ -1,6 +1,8 @@
 package Refactor.Ship.Addons;
 
-public abstract class Defense {
+import java.io.Serializable;
+
+public abstract class Defense implements Serializable {
     private int absorption;
 
     public Defense(int absorption) {

@@ -9,10 +9,11 @@ import Refactor.User.Client;
 import Refactor.User.User;
 import Refactor.User.UserRole;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public final class Systems {
+public final class Systems implements Serializable {
     private static Systems instance;
 
     private User currentUser;

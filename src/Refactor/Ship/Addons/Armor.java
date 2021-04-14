@@ -1,6 +1,8 @@
 package Refactor.Ship.Addons;
 
-public class Armor extends Defense{
+import java.io.Serializable;
+
+public class Armor extends Defense implements Serializable {
     private String material;
     private int overWeight;
 

@@ -4,7 +4,9 @@ import Refactor.Ship.Addons.Defense;
 import Refactor.Ship.Addons.Engine;
 import Refactor.Ship.Ship;
 
-public class CargoShip extends Ship {
+import java.io.Serializable;
+
+public class CargoShip extends Ship implements Serializable {
     private int maxLoad;
     private Defense defense;
 

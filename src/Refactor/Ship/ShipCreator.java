@@ -6,9 +6,10 @@ import Refactor.Ship.Types.DestroyerShip;
 import Refactor.Ship.Types.FighterShip;
 import Refactor.Ship.Types.SpaceStationShip;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class ShipCreator {
+public class ShipCreator implements Serializable {
     public static Ship createShip(ShipType type){
         Ship ship = null;
         switch (type){

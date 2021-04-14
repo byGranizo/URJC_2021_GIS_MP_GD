@@ -4,9 +4,10 @@ import Refactor.Ship.Addons.Defense;
 import Refactor.Ship.Addons.Engine;
 import Refactor.Ship.Ship;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class SpaceStationShip extends Ship {
+public class SpaceStationShip extends Ship implements Serializable {
     private int maxPassegers;
     private ArrayList<Ship> hangar;
     private Defense[] defense;

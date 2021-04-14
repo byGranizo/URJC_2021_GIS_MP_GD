@@ -5,7 +5,9 @@ import Refactor.Ship.Addons.Engine;
 import Refactor.Ship.Addons.Weapon;
 import Refactor.Ship.Ship;
 
-public class FighterShip extends Ship {
+import java.io.Serializable;
+
+public class FighterShip extends Ship implements Serializable {
     private static final int CREW_SIZE = 1;
 
     private Weapon[] weapons;

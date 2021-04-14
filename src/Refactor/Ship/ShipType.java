@@ -1,6 +1,8 @@
 package Refactor.Ship;
 
-public enum ShipType {
+import java.io.Serializable;
+
+public enum ShipType implements Serializable {
     FIGHTER,
     DESTROYER,
     CARGO,

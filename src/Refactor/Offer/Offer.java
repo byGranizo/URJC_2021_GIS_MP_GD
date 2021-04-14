@@ -3,10 +3,11 @@ package Refactor.Offer;
 import Refactor.Ship.Ship;
 import Refactor.User.Client;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Offer {
+public class Offer implements Serializable {
     private String id;
     private OfferStatus status;
     private ArrayList<Ship> shipsList;

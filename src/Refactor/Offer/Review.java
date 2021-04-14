@@ -1,6 +1,8 @@
 package Refactor.Offer;
 
-public class Review {
+import java.io.Serializable;
+
+public class Review implements Serializable {
     private String comment;
     private int rate;
 

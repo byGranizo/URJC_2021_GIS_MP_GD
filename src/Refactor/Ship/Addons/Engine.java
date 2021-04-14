@@ -1,6 +1,8 @@
 package Refactor.Ship.Addons;
 
-public class Engine {
+import java.io.Serializable;
+
+public class Engine implements Serializable {
     private EngineType type;
     private int speed;
 

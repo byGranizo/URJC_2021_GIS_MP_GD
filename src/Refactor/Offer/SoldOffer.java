@@ -4,10 +4,11 @@ import Refactor.Ship.Ship;
 import Refactor.User.Client;
 import Refactor.User.User;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class SoldOffer extends Offer {
+public class SoldOffer extends Offer implements Serializable {
     private Date saleDate;
     private User buyer;
 

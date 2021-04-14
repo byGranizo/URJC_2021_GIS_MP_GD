@@ -1,6 +1,8 @@
 package Refactor.User;
 
-public class Admin extends User {
+import java.io.Serializable;
+
+public class Admin extends User implements Serializable {
 
 
     public Admin(String id, String fullName, String user, String mail, UserRole role, String password) {

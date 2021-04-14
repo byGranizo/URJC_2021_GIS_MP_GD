@@ -1,6 +1,8 @@
 package Refactor.Ship.Addons;
 
-public class Shield extends Defense{
+import java.io.Serializable;
+
+public class Shield extends Defense implements Serializable {
     private int energyCapacity;
 
     public Shield(int absorption, int energyCapacity) {

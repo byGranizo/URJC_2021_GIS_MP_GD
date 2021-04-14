@@ -2,9 +2,10 @@ package Refactor.User;
 
 import Refactor.System.Systems;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class UserCreator {
+public class UserCreator implements Serializable {
     public static User createUser(UserRole role){
         Scanner scan = new Scanner(System.in);
 

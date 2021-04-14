@@ -5,9 +5,10 @@ import Refactor.Ship.Addons.Engine;
 import Refactor.Ship.Addons.Weapon;
 import Refactor.Ship.Ship;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class DestroyerShip extends Ship {
+public class DestroyerShip extends Ship implements Serializable {
     private Weapon[] weapons;
     private Defense[] defense;
 

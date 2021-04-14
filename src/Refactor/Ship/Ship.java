@@ -2,7 +2,9 @@ package Refactor.Ship;
 
 import Refactor.Ship.Addons.Engine;
 
-public abstract class Ship {
+import java.io.Serializable;
+
+public abstract class Ship implements Serializable {
     private String nRegister;
     private Engine[] engines;
     private int crewSize;

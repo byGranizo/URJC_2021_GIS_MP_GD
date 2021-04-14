@@ -1,6 +1,8 @@
 package Refactor.Offer;
 
-public enum OfferStatus {
+import java.io.Serializable;
+
+public enum OfferStatus implements Serializable  {
     NOT_REVIEWED,
     APPROVED,
     SOLD

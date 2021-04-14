@@ -3,9 +3,10 @@ package Refactor.User;
 import Refactor.Offer.Review;
 import Refactor.Ship.Ship;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Client extends User {
+public class Client extends User implements Serializable {
     private String originPlanet;
     private String race;
     private ArrayList<Ship> ships;

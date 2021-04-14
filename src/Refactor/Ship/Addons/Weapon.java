@@ -1,6 +1,8 @@
 package Refactor.Ship.Addons;
 
-public class Weapon {
+import java.io.Serializable;
+
+public class Weapon implements Serializable {
     private WeaponType type;
     private int power;
 
