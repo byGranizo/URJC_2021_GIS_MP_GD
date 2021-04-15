@@ -8,11 +8,12 @@ import Ship.Ship;
 import User.Client;
 import User.User;
 import User.UserRole;
-
+import Ship.ShipType;
 import java.io.Serializable;
-import java.lang.reflect.Array;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Observable;
 
 public final class Systems implements Serializable {
     private static Systems instance;
@@ -102,6 +103,13 @@ public final class Systems implements Serializable {
 
     public void addOfferToList(Offer offer){
         offers.add(offer);
+        OfferEvent offerevent = new OfferEvent(offer,offer.getShipsList());
+        System.out.println("negsitrada oferta");
+        synchronized (OBSERVABLE) {
+            OBSERVABLE.setChanged();
+            OBSERVABLE.notifyObservers(offerevent);
+        }
+
     }
 
     public void setUserAsPirate(String username){
@@ -180,7 +188,7 @@ public final class Systems implements Serializable {
                 offers.remove(i);
                 offer.setStatus(OfferStatus.SOLD);
 
-                SoldOffer soldOffer = new SoldOffer(offer, new Date(), getCurrentUser());
+                SoldOffer soldOffer = new SoldOffer(offer, "new Date()", getCurrentUser());
                 soldOffers.add(soldOffer);
 
                 shipList = offer.getShipsList();
@@ -296,4 +304,47 @@ public final class Systems implements Serializable {
     }
 
 
+    public class OfferEvent implements Serializable{
+
+        private Offer offer;
+        private ArrayList<Ship> type;
+
+        public OfferEvent(Offer offer, ArrayList<Ship> type) {
+            this.offer = offer;
+            this.type = type;
+        }
+
+        public Offer getOffer() {
+            return offer;
+        }
+
+        public void setOffer(Offer offer) {
+            this.offer = offer;
+        }
+
+        public ArrayList<Ship> getType() {
+            return type;
+        }
+
+        public void setType(ArrayList<Ship> type) {
+            this.type = type;
+        }
+    }
+
+    private static final OfferObservable OBSERVABLE;
+
+    static {
+        OBSERVABLE = new OfferObservable();
+    }
+
+    public static Observable getObservable() {
+        return OBSERVABLE;
+    }
+
+    private static class OfferObservable extends Observable {
+        @Override
+        public synchronized void setChanged() {
+            super.setChanged();
+        }
+    }
 }

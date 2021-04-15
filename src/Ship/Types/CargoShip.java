@@ -10,8 +10,8 @@ public class CargoShip extends Ship implements Serializable {
     private int maxLoad;
     private Defense defense;
 
-    public CargoShip(String nRegister, Engine[] engines, int crewSize, int maxLoad, Defense defense) {
-        super(nRegister, engines, crewSize);
+    public CargoShip(String nRegister, Engine[] engines, int crewSize, int totalPower, int totalDefense, int maxLoad, Defense defense) {
+        super(nRegister, engines, crewSize, totalPower, totalDefense);
         this.maxLoad = maxLoad;
         this.defense = defense;
     }

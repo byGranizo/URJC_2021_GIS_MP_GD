@@ -11,8 +11,8 @@ public class DestroyerShip extends Ship implements Serializable {
     private Weapon[] weapons;
     private Defense[] defense;
 
-    public DestroyerShip(String nRegister, Engine[] engines, int crewSize, Weapon[] weapons, Defense[] defense) {
-        super(nRegister, engines, crewSize);
+    public DestroyerShip(String nRegister, Engine[] engines, int crewSize, int totalPower, int totalDefense, Weapon[] weapons, Defense[] defense) {
+        super(nRegister, engines, crewSize, totalPower, totalDefense);
         this.weapons = weapons;
         this.defense = defense;
     }

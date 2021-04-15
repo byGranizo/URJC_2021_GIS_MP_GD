@@ -9,21 +9,21 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class SoldOffer extends Offer implements Serializable {
-    private Date saleDate;
+    private String saleDate;
     private User buyer;
 
 
-    public SoldOffer(Offer offer, Date saleDate, User buyer) {
+    public SoldOffer(Offer offer, String saleDate, User buyer) {
         super(offer.getId(), offer.getStatus(), offer.getShipsList(), offer.getPrice(), offer.getPower(), offer.getAbsortion(), offer.getDueDate(), offer.getSeller());
         this.saleDate = saleDate;
         this.buyer = buyer;
     }
 
-    public Date getSaleDate() {
+    public String getSaleDate() {
         return saleDate;
     }
 
-    public void setSaleDate(Date saleDate) {
+    public void setSaleDate(String saleDate) {
         this.saleDate = saleDate;
     }
 
