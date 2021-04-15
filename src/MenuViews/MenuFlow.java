@@ -286,7 +286,7 @@ public class MenuFlow {
             System.out.println("3. Exit");
 
             option = scan.nextInt();
-
+            scan.nextLine();
             switch (option) {
                 case 1:
                     System.out.println("Write the offer id:");

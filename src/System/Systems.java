@@ -329,11 +329,7 @@ public final class Systems implements Serializable {
         }
     }
 
-    private static final OfferObservable OBSERVABLE;
-
-    static {
-        OBSERVABLE = new OfferObservable();
-    }
+    private static final OfferObservable OBSERVABLE = new OfferObservable();
 
     public static Observable getObservable() {
         return OBSERVABLE;
