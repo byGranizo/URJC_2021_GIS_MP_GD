@@ -98,7 +98,7 @@ public class MenuFlow {
             System.out.println("2. Create offer");
             System.out.println("3. Create Ship");
             System.out.println("4. View my Ships");
-            System.out.println("5. View my Ships");
+            System.out.println("5. View my Offers");
             System.out.println("6. Exit");
 
             option = scan.nextInt();
@@ -308,53 +308,45 @@ public class MenuFlow {
     }
 
     public static void createOffer() {
-        try {
-            Scanner scan = new Scanner(System.in);
-            Client user = (Client) Systems.getInstance().getCurrentUser();
+        Scanner scan = new Scanner(System.in);
+        Client user = (Client) Systems.getInstance().getCurrentUser();
 
-            System.out.println("Offer Id:");
-            String offerId = scan.nextLine();
+        System.out.println("Offer Id:");
+        String offerId = scan.nextLine();
 
-            System.out.println("Number of ships in the offer:");
-            int numberShips = scan.nextInt();
-
-            String shipId;
-            ArrayList<Ship> shipsList = new ArrayList<>();
-            for(int i=0; i<numberShips; i++){
-                System.out.println("Id of ship to add:");
-                shipId = scan.nextLine();
-
-                for (Ship ship : user.getShips()){
-                    if (ship.getnRegister() == shipId){
-                        shipsList.add(ship);
-                    }
+        System.out.println("Number of ships in the offer:");
+        int numberShips = scan.nextInt();
+        scan.nextLine();
+        String shipId;
+        ArrayList<Ship> shipsList = new ArrayList<>();
+        for(int i=0; i<numberShips; i++){
+            System.out.println("Id of ship to add:");
+            shipId = scan.nextLine();
+            for (Ship ship : Systems.getInstance().getShipListToUser()){
+                if( shipId.equals(ship.getnRegister()) ){
+                    shipsList.add(ship);
                 }
             }
-
-            System.out.println("Total power:");
-            int power = scan.nextInt();
-
-            System.out.println("Total absortion:");
-            int absortion = scan.nextInt();
-
-            System.out.println("Price:");
-            int price = scan.nextInt();
-
-
-            System.out.println("Due date (dd/MM/yyyy):");
-            String dateStr = scan.nextLine();
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            Date dueDate = null;
-            dueDate = sdf.parse(dateStr);
-
-
-            Offer offer = new Offer(offerId, OfferStatus.NOT_REVIEWED, shipsList, price, power, absortion, dueDate, user);
-
-            Systems.getInstance().addOfferToList(offer);
-            Database.saveData();
-        } catch (ParseException e) {
-            e.printStackTrace();
         }
+
+        int power = 0;
+        int absortion = 0;
+        for (Ship s : shipsList) {
+            power = power + s.getTotalPower();
+            absortion = absortion + s.getTotalDefense();
+        }
+
+        System.out.println("Price:");
+        int price = scan.nextInt();
+
+
+        System.out.println("Due date (dd/MM/yyyy):");
+        String dateStr = scan.nextLine();
+
+        System.out.println("naves: "+shipsList.size());
+        Offer offer = new Offer(offerId, OfferStatus.NOT_REVIEWED, shipsList, price, power, absortion, dateStr, user);
+
+        Systems.getInstance().addOfferToList(offer);
 
     }
 

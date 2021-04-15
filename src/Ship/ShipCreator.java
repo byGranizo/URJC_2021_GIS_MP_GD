@@ -32,6 +32,7 @@ public class ShipCreator implements Serializable {
 
     private static FighterShip creatorFighter(){
         Scanner scan = new Scanner(System.in);
+        int totalPower = 0;
 
         System.out.println("Register number:");
         String registerNum = scan.nextLine();
@@ -42,7 +43,11 @@ public class ShipCreator implements Serializable {
 
         Defense defense = createDefense();
 
-        return new FighterShip(registerNum, engines, weapons, defense);
+        for (Weapon weapon : weapons ) {
+            totalPower = totalPower + weapon.getPower();
+        }
+
+        return new FighterShip(registerNum, engines,totalPower,defense.getAbsorption(),weapons, defense);
     }
 
     private static DestroyerShip creatorDestroyer(){
@@ -59,8 +64,17 @@ public class ShipCreator implements Serializable {
         Weapon[] weapons = createWeaponArray("infinite");
 
         Defense[] defense = createDefenseArray("2");
+        int totalPower = 0;
+        int totalDefense = 0;
 
-        return new DestroyerShip(registerNum, engines, crewSize, weapons, defense);
+        for (Weapon weapon : weapons ) {
+            totalPower = totalPower + weapon.getPower();
+        }
+
+        for (Defense defe : defense ) {
+            totalDefense = totalDefense + defe.getAbsorption();
+        }
+        return new DestroyerShip(registerNum, engines, crewSize,totalPower,totalDefense, weapons, defense);
     }
 
     private static CargoShip creatorCargo(){
@@ -79,7 +93,7 @@ public class ShipCreator implements Serializable {
 
         Defense defense = createDefense();
 
-        return new CargoShip(registerNum, engines, crewSize, maxWeight, defense);
+        return new CargoShip(registerNum, engines, crewSize,0,defense.getAbsorption() ,maxWeight, defense);
     }
 
     private static SpaceStationShip creatorSpaceStation(){
@@ -98,7 +112,11 @@ public class ShipCreator implements Serializable {
 
         Defense[] defense = createDefenseArray("3");
 
-        return new SpaceStationShip(registerNum, engines, crewSize, maxPassengers, defense);
+        int totalDefense = 0;
+        for (Defense defe : defense ) {
+            totalDefense = totalDefense + defe.getAbsorption();
+        }
+        return new SpaceStationShip(registerNum, engines, crewSize,0,totalDefense, maxPassengers,defense);
     }
 
 

@@ -1,6 +1,8 @@
 package Ship;
 
+import Ship.Addons.Defense;
 import Ship.Addons.Engine;
+import Ship.Addons.Weapon;
 
 import java.io.Serializable;
 
@@ -8,11 +10,15 @@ public abstract class Ship implements Serializable {
     private String nRegister;
     private Engine[] engines;
     private int crewSize;
+    private int totalPower;
+    private int totalDefense;
 
-    public Ship(String nRegister, Engine[] engines, int crewSize) {
+    public Ship(String nRegister, Engine[] engines, int crewSize, int totalPower, int totalDefense) {
         this.nRegister = nRegister;
         this.engines = engines;
         this.crewSize = crewSize;
+        this.totalPower = totalPower;
+        this.totalDefense = totalDefense;
     }
 
     public String getnRegister() {
@@ -37,5 +43,21 @@ public abstract class Ship implements Serializable {
 
     public void setCrewSize(int crewSize) {
         this.crewSize = crewSize;
+    }
+
+    public int getTotalPower() {
+        return totalPower;
+    }
+
+    public void setTotalPower(int totalPower) {
+        this.totalPower = totalPower;
+    }
+
+    public int getTotalDefense() {
+        return totalDefense;
+    }
+
+    public void setTotalDefense(int totalDefense) {
+        this.totalDefense = totalDefense;
     }
 }

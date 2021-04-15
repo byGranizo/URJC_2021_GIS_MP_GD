@@ -14,10 +14,10 @@ public class Offer implements Serializable {
     private int price;
     private int power;
     private int absortion;
-    private Date dueDate;
+    private String dueDate;
     private Client seller;
 
-    public Offer(String id, OfferStatus status, ArrayList<Ship> shipsList, int price, int power, int absortion, Date dueDate, Client seller) {
+    public Offer(String id, OfferStatus status, ArrayList<Ship> shipsList, int price, int power, int absortion, String dueDate, Client seller) {
         this.id = id;
         this.status = status;
         this.shipsList = shipsList;
@@ -68,11 +68,11 @@ public class Offer implements Serializable {
         this.power = power;
     }
 
-    public Date getDueDate() {
+    public String getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(Date dueDate) {
+    public void setDueDate(String dueDate) {
         this.dueDate = dueDate;
     }
 

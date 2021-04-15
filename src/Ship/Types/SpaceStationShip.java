@@ -12,10 +12,10 @@ public class SpaceStationShip extends Ship implements Serializable {
     private ArrayList<Ship> hangar;
     private Defense[] defense;
 
-    public SpaceStationShip(String nRegister, Engine[] engines, int crewSize, int maxPassegers, Defense[] defense) {
-        super(nRegister, engines, crewSize);
-        this.hangar = new ArrayList<Ship>();
+    public SpaceStationShip(String nRegister, Engine[] engines, int crewSize, int totalPower, int totalDefense, int maxPassegers, Defense[] defense) {
+        super(nRegister, engines, crewSize, totalPower, totalDefense);
         this.maxPassegers = maxPassegers;
+        this.hangar = new ArrayList<Ship>();
         this.defense = defense;
     }
 
