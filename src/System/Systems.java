@@ -103,13 +103,6 @@ public final class Systems implements Serializable {
 
     public void addOfferToList(Offer offer){
         offers.add(offer);
-        OfferEvent offerevent = new OfferEvent(offer,offer.getShipsList());
-        System.out.println("negsitrada oferta");
-        synchronized (OBSERVABLE) {
-            OBSERVABLE.setChanged();
-            OBSERVABLE.notifyObservers(offerevent);
-        }
-
     }
 
     public void setUserAsPirate(String username){
@@ -161,6 +154,11 @@ public final class Systems implements Serializable {
             if (offer.getId().equals(id)){
                 offer.setStatus(OfferStatus.APPROVED);
                 offers.set(i, offer);
+                OfferEvent offerevent = new OfferEvent(offer,offer.getShipsList());
+                synchronized (OBSERVABLE) {
+                    OBSERVABLE.setChanged();
+                    OBSERVABLE.notifyObservers(offerevent);
+                }
                 return;
             }
         }
@@ -291,13 +289,13 @@ public final class Systems implements Serializable {
 
         offerLoop:
         for (Offer offer : offers){
-
-            for(Ship ship:offer.getShipsList()){
-                if (ship.getClass().getSimpleName().equals(type)){
-                    offersOfType.add(offer);
-                    continue offerLoop;
+            if(offer.getStatus() == OfferStatus.APPROVED){
+                for(Ship ship:offer.getShipsList()){
+                    if (ship.getClass().getSimpleName().equals(type)){
+                        offersOfType.add(offer);
+                        continue offerLoop;
+                    }
                 }
-
             }
         }
         return offersOfType;
@@ -307,11 +305,11 @@ public final class Systems implements Serializable {
     public class OfferEvent implements Serializable{
 
         private Offer offer;
-        private ArrayList<Ship> type;
+        private ArrayList<Ship> ships;
 
-        public OfferEvent(Offer offer, ArrayList<Ship> type) {
+        public OfferEvent(Offer offer, ArrayList<Ship> ships) {
             this.offer = offer;
-            this.type = type;
+            this.ships = ships;
         }
 
         public Offer getOffer() {
@@ -322,12 +320,12 @@ public final class Systems implements Serializable {
             this.offer = offer;
         }
 
-        public ArrayList<Ship> getType() {
-            return type;
+        public ArrayList<Ship> getShipsList() {
+            return ships;
         }
 
-        public void setType(ArrayList<Ship> type) {
-            this.type = type;
+        public void setShipsList(ArrayList<Ship> ships) {
+            this.ships = ships;
         }
     }
 

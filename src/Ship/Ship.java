@@ -12,6 +12,7 @@ public abstract class Ship implements Serializable {
     private int crewSize;
     private int totalPower;
     private int totalDefense;
+    private ShipType type;
 
     public Ship(String nRegister, Engine[] engines, int crewSize, int totalPower, int totalDefense) {
         this.nRegister = nRegister;
@@ -59,5 +60,13 @@ public abstract class Ship implements Serializable {
 
     public void setTotalDefense(int totalDefense) {
         this.totalDefense = totalDefense;
+    }
+
+    public ShipType getType() {
+        return type;
+    }
+
+    public void setType(ShipType type) {
+        this.type = type;
     }
 }

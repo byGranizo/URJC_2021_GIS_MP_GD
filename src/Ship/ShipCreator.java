@@ -15,15 +15,19 @@ public class ShipCreator implements Serializable {
         switch (type){
             case FIGHTER:
                 ship = creatorFighter();
+                ship.setType(ShipType.FIGHTER);
                 break;
             case DESTROYER:
                 ship = creatorDestroyer();
+                ship.setType(ShipType.DESTROYER);
                 break;
             case CARGO:
                 ship = creatorCargo();
+                ship.setType(ShipType.CARGO);
                 break;
             case SPACE_STATION:
                 ship = creatorSpaceStation();
+                ship.setType(ShipType.SPACE_STATION);
                 break;
         }
 

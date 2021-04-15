@@ -91,15 +91,17 @@ public class MenuFlow {
     public static void executeClientMenu(){
         Scanner scan = new Scanner(System.in);
         int option = -1;
-        while(option != 6){
+        while(option != 8){
             System.out.println("Choose and option:");
 
             System.out.println("1. Search and buy");
             System.out.println("2. Create offer");
             System.out.println("3. Create Ship");
-            System.out.println("4. View my Ships");
-            System.out.println("5. View my Offers");
-            System.out.println("6. Exit");
+            System.out.println("4. Subscriptions");
+            System.out.println("5. View my Ships");
+            System.out.println("6. View my Offers");
+            System.out.println("7. View my Notifications");
+            System.out.println("8. Exit");
 
             option = scan.nextInt();
 
@@ -123,6 +125,35 @@ public class MenuFlow {
                     registerShip();
                     break;
                 case 4:
+                    Client userCurrent = (Client) Systems.getInstance().getCurrentUser();
+                    System.out.println("Choose an option subscriptions: ");
+                    System.out.println("1. FIGHTER");
+                    System.out.println("2. DESTROYER");
+                    System.out.println("3. CARGO");
+                    System.out.println("4. SPACE_STATION");
+                    System.out.println("5. Delete my subscription");
+                    switch (scan.nextInt()){
+                        case 1:
+                            userCurrent.setInterestedIn(ShipType.FIGHTER);
+                            break;
+                        case 2:
+                            userCurrent.setInterestedIn(ShipType.DESTROYER);
+                            break;
+                        case 3:
+                            userCurrent.setInterestedIn(ShipType.CARGO);
+                            break;
+                        case 4:
+                            userCurrent.setInterestedIn(ShipType.SPACE_STATION);
+                            break;
+                        case 5:
+                            userCurrent.setInterestedIn(null);
+                            break;
+                        default:
+                            System.out.println("Invalid Option");
+                    }
+
+                    break;
+                case 5:
                     ArrayList<Ship> ships = Systems.getInstance().getShipListToUser();
                     if(ships != null){
                         for (Ship ship : ships ) {
@@ -134,7 +165,7 @@ public class MenuFlow {
                         }
                     }
                     break;
-                case 5:
+                case 6:
                     ArrayList<Offer> offerlist = Systems.getInstance().getOfferToUser();
                     if(offerlist != null){
                         for (Offer offe : offerlist ) {
@@ -157,7 +188,17 @@ public class MenuFlow {
                         }
                     }
                     break;
-                case 6:
+                case 7:
+                    Client userCurrent2 = (Client) Systems.getInstance().getCurrentUser();
+                    ArrayList<String> notifications = userCurrent2.getNotificaciones();
+                    if(notifications != null){
+                        for ( String notify : notifications) {
+                            System.out.println(notify);
+                            System.out.println();
+                        }
+                    }
+                    break;
+                case 8:
                     System.out.println("Bye");
                     break;
             }
@@ -338,12 +379,11 @@ public class MenuFlow {
 
         System.out.println("Price:");
         int price = scan.nextInt();
-
+        scan.nextLine();
 
         System.out.println("Due date (dd/MM/yyyy):");
         String dateStr = scan.nextLine();
 
-        System.out.println("naves: "+shipsList.size());
         Offer offer = new Offer(offerId, OfferStatus.NOT_REVIEWED, shipsList, price, power, absortion, dateStr, user);
 
         Systems.getInstance().addOfferToList(offer);

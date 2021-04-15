@@ -17,7 +17,7 @@ public class Client extends User implements Serializable,Subscriber {
     private ArrayList<Review> reviews;
 
     private ShipType interestedIn;
-    private ArrayList<String> notificaciones;
+    private ArrayList<String> notifications;
 
     public Client(String id, String fullName, String user, String mail, UserRole role, String password, String originPlanet, String race, ArrayList<Ship> ships, int nWarnings, boolean piracySuspect, boolean fraudSuspect, boolean specialLicense, ArrayList<Review> reviews) {
         super(id, fullName, user, mail, role, password);
@@ -29,6 +29,8 @@ public class Client extends User implements Serializable,Subscriber {
         this.fraudSuspect = fraudSuspect;
         this.specialLicense = specialLicense;
         this.reviews = reviews;
+        this.interestedIn = null;
+        this.notifications = new ArrayList<>();
     }
 
     public Client(String id, String fullName, String user, String mail, UserRole role, String password, String originPlanet, String race, boolean specialLicense) {
@@ -41,6 +43,8 @@ public class Client extends User implements Serializable,Subscriber {
         this.fraudSuspect = false;
         this.specialLicense = specialLicense;
         this.reviews = new ArrayList<>();
+        this.interestedIn = null;
+        this.notifications = new ArrayList<>();
     }
 
     public String getOriginPlanet() {
@@ -116,15 +120,15 @@ public class Client extends User implements Serializable,Subscriber {
     }
 
     public ArrayList<String> getNotificaciones() {
-        return notificaciones;
+        return notifications;
     }
 
-    public void setNotificaciones(ArrayList<String> notificaciones) {
-        this.notificaciones = notificaciones;
+    public void setNotificaciones(ArrayList<String> notifications) {
+        this.notifications = notifications;
     }
 
     @Override
     public void update(String notification) {
-        this.notificaciones.add(notification);
+        this.notifications.add(notification);
     }
 }
