@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
+import Offer.Offer;
 import Ship.Ship;
 import System.Systems;
 import User.Client;
@@ -17,9 +18,9 @@ public class ObserverOffers implements Observer, Serializable {
     @Override
     @SuppressWarnings("unchecked")
     public void update(Observable observable, Object args) {
-        if (args instanceof Systems.OfferEvent) {
-            Systems.OfferEvent evento = (Systems.OfferEvent) args;
-            String notify = "ID: "+evento.getOffer().getId()+", Power: "+evento.getOffer().getPower()+", Defense: "+evento.getOffer().getAbsortion()+", Price: "+evento.getOffer().getPrice();
+        if (args instanceof Offer) {
+            Offer evento = (Offer) args;
+            String notify = "ID: "+evento.getId()+", Power: "+evento.getPower()+", Defense: "+evento.getAbsortion()+", Price: "+evento.getPrice();
             List<String> types = new ArrayList<String>();
             for ( Ship ship : evento.getShipsList()) {
                 types.add(ship.getType().toString());

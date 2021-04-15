@@ -157,10 +157,9 @@ public final class Systems implements Serializable {
             if (offer.getId().equals(id)){
                 offer.setStatus(OfferStatus.APPROVED);
                 offers.set(i, offer);
-                OfferEvent offerevent = new OfferEvent(offer,offer.getShipsList());
                 synchronized (OBSERVABLE) {
                     OBSERVABLE.setChanged();
-                    OBSERVABLE.notifyObservers(offerevent);
+                    OBSERVABLE.notifyObservers(offer);
                 }
                 return;
             }
@@ -302,34 +301,6 @@ public final class Systems implements Serializable {
             }
         }
         return offersOfType;
-    }
-
-
-    public class OfferEvent implements Serializable{
-
-        private Offer offer;
-        private ArrayList<Ship> ships;
-
-        public OfferEvent(Offer offer, ArrayList<Ship> ships) {
-            this.offer = offer;
-            this.ships = ships;
-        }
-
-        public Offer getOffer() {
-            return offer;
-        }
-
-        public void setOffer(Offer offer) {
-            this.offer = offer;
-        }
-
-        public ArrayList<Ship> getShipsList() {
-            return ships;
-        }
-
-        public void setShipsList(ArrayList<Ship> ships) {
-            this.ships = ships;
-        }
     }
 
     public static Observable getObservable() {
