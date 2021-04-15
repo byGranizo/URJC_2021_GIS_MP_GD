@@ -57,13 +57,14 @@ public class MenuFlow {
     public static void executeAdminMenu(){
         Scanner scan = new Scanner(System.in);
         int option = -1;
-        while(option != 4){
+        while(option != 5){
             System.out.println("Choose and option:");
 
             System.out.println("1. Register as pirate");
             System.out.println("2. Register as fraud");
-            System.out.println("3. Verify offers");
-            System.out.println("4. Exit");
+            System.out.println("3. View Offers");
+            System.out.println("4. Verify offers");
+            System.out.println("5. Exit");
 
             option = scan.nextInt();
 
@@ -77,11 +78,25 @@ public class MenuFlow {
                     Systems.getInstance().setUserAsFraud(scan.nextLine());
                     break;
                 case 3:
-                    offerVerificacionMenu();
+                    if(Systems.getInstance().getOffers() != null){
+                        for ( Offer offer : Systems.getInstance().getOffers() ) {
+                            System.out.println("-----"+" "+offer.getId()+" -----");
+                            System.out.println("Seller: "+offer.getSeller().getUsername());
+                            System.out.println("Absorption: "+offer.getAbsortion());
+                            System.out.println("Power: "+offer.getPower());
+                            System.out.println("Price: "+offer.getPrice());
+                            System.out.println("Status: "+offer.getStatus());
+                            System.out.println();
+                        }
+                    }
                     break;
                 case 4:
+                    offerVerificacionMenu();
+                    break;
+                case 5:
                     System.out.println("Bye");
                     break;
+
 
             }
             Database.saveData();
