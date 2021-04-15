@@ -84,8 +84,8 @@ public class MenuFlow {
                     break;
 
             }
+            Database.saveData();
         }
-
     }
 
     public static void executeClientMenu(){
@@ -202,6 +202,7 @@ public class MenuFlow {
                     System.out.println("Bye");
                     break;
             }
+            Database.saveData();
         }
 
     }
