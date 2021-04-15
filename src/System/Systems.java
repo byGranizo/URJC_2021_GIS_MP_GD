@@ -1,7 +1,6 @@
 package System;
 
 import Observer.ObserverOffers;
-import Observer.ObserverOffers.OfferObservable;
 import Offer.Offer;
 import Offer.OfferStatus;
 import Offer.Review;
@@ -18,7 +17,7 @@ import java.util.Date;
 import java.util.Observable;
 
 public final class Systems implements Serializable {
-    private static final OfferObservable OBSERVABLE = new OfferObservable();
+    private static final ObserverOffers OBSERVABLE = new ObserverOffers();
     private static Systems instance;
 
     private User currentUser;

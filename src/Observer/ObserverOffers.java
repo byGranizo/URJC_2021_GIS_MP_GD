@@ -13,7 +13,7 @@ import User.Client;
 import User.User;
 import User.UserRole;
 
-public class ObserverOffers implements Observer, Serializable {
+public class ObserverOffers extends  Observable implements Observer, Serializable {
 
     @Override
     @SuppressWarnings("unchecked")
@@ -38,10 +38,8 @@ public class ObserverOffers implements Observer, Serializable {
         }
     }
 
-    public static class OfferObservable extends Observable {
-        @Override
-        public synchronized void setChanged() {
-            super.setChanged();
-        }
+    @Override
+    public synchronized void setChanged() {
+        super.setChanged();
     }
 }
