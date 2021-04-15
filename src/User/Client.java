@@ -2,11 +2,11 @@ package User;
 
 import Offer.Review;
 import Ship.Ship;
-
+import Ship.ShipType;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Client extends User implements Serializable {
+public class Client extends User implements Serializable,Subscriber {
     private String originPlanet;
     private String race;
     private ArrayList<Ship> ships;
@@ -15,6 +15,9 @@ public class Client extends User implements Serializable {
     private boolean fraudSuspect;
     private boolean specialLicense;
     private ArrayList<Review> reviews;
+
+    private ShipType interestedIn;
+    private ArrayList<String> notificaciones;
 
     public Client(String id, String fullName, String user, String mail, UserRole role, String password, String originPlanet, String race, ArrayList<Ship> ships, int nWarnings, boolean piracySuspect, boolean fraudSuspect, boolean specialLicense, ArrayList<Review> reviews) {
         super(id, fullName, user, mail, role, password);
@@ -102,5 +105,26 @@ public class Client extends User implements Serializable {
 
     public void setReviews(ArrayList<Review> reviews) {
         this.reviews = reviews;
+    }
+
+    public ShipType getInterestedIn() {
+        return interestedIn;
+    }
+
+    public void setInterestedIn(ShipType interestedIn) {
+        this.interestedIn = interestedIn;
+    }
+
+    public ArrayList<String> getNotificaciones() {
+        return notificaciones;
+    }
+
+    public void setNotificaciones(ArrayList<String> notificaciones) {
+        this.notificaciones = notificaciones;
+    }
+
+    @Override
+    public void update(String notification) {
+        this.notificaciones.add(notification);
     }
 }
