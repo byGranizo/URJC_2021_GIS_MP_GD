@@ -11,8 +11,8 @@ public class Main {
         if(Database.existsData()){
             Database.loadData();
         }
-        Observer o1 = new ObserverOffers();
-        Systems.getObservable().addObserver(o1);
+        Observer observer = new ObserverOffers();
+        Systems.getObservable().addObserver(observer);
         MenuFlow.executeLoginMenu();
     }
 }

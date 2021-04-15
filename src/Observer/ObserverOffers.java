@@ -35,7 +35,6 @@ public class ObserverOffers implements Observer, Serializable {
                     }
                 }
             }
-
         }
     }
 
