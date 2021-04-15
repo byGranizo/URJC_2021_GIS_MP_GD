@@ -1,5 +1,7 @@
 package System;
 
+import Observer.ObserverOffers;
+import Observer.ObserverOffers.OfferObservable;
 import Offer.Offer;
 import Offer.OfferStatus;
 import Offer.Review;
@@ -334,10 +336,4 @@ public final class Systems implements Serializable {
         return OBSERVABLE;
     }
 
-    private static class OfferObservable extends Observable {
-        @Override
-        public synchronized void setChanged() {
-            super.setChanged();
-        }
-    }
 }

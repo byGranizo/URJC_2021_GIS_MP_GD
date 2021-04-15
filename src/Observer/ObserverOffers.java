@@ -37,4 +37,11 @@ public class ObserverOffers implements Observer, Serializable {
 
         }
     }
+
+    public static class OfferObservable extends Observable {
+        @Override
+        public synchronized void setChanged() {
+            super.setChanged();
+        }
+    }
 }
