@@ -1,92 +1,67 @@
 package System;
 
+import Offer.Review;
+import Ship.Ship;
 import User.User;
 
 import static org.junit.jupiter.api.Assertions.*;
 import User.UserCreator;
 import User.UserRole;
 import User.Client;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+
+import java.util.ArrayList;
 
 class SystemsTest {
 
 
 
+    @BeforeEach
+    void CrearUsuario() {
+
+        ArrayList<Ship> ships = new ArrayList<Ship>();
+        ArrayList<Review> reviews = new ArrayList<Review>();
+        User user = new Client("12345", "Alvaro Pindado", "Alvaropin17", "alvaro17pc", UserRole.CLIENT, "123456", "Tierra", "Humano", ships, 0, false, false, false, reviews);
+        Systems.getInstance().addUserToList(user);
+
+    }
+
 
     @org.junit.jupiter.api.Test
-    void login() {
-
-        User user = new Client("12345", "Alvaro Pindado", "Alvaropin17", "alvaro17pc", UserRole.CLIENT, "123456");
-        user.setFullName("Alvaro Pindado");
-        user.setId("12345");
-        user.setMail("alvaro17pc");
-        user.setPassword("123456");
-        user.setRole(UserRole.CLIENT);
-        user.setUsername("Alvaropin17");
-        Systems.getInstance().addUserToList(user);
+    void testLogin1() {
 
         boolean xpresult = Systems.getInstance().login("Alvaropin17", "123456");
         assertTrue(xpresult);
     }
 
     @org.junit.jupiter.api.Test
-    void getInstance() {
+    void testLogin2() {
+
+        boolean xpresult = Systems.getInstance().login("Alvaropin98", "123456");
+        assertFalse(xpresult);
     }
 
-    @org.junit.jupiter.api.Test
-    void setInstance() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void testGetInstance() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void getUsers() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void setUsers() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void getOffers() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void setOffers() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void getSoldOffers() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void setSoldOffers() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void testLogin() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void addUserToList() {
-    }
 
     @org.junit.jupiter.api.Test
     void addOfferToList() {
-    }
 
-    @org.junit.jupiter.api.Test
-    void setUserAsPirate() {
     }
 
     @org.junit.jupiter.api.Test
     void incrementUserWarning() {
+        int antes = 0, despues = 0;
+        Systems.getInstance().login("Alvaropin17", "123456");
+        User user = Systems.getInstance().getCurrentUser();
+        Client client = (Client) user;
+        antes = client.getnWarnings();
+        Systems.getInstance().incrementUserWarning("Alvaropin17");
+        despues = client.getnWarnings();
+        assertTrue(despues > antes);
+
     }
 
-    @org.junit.jupiter.api.Test
-    void setUserAsFraud() {
-    }
 
     @org.junit.jupiter.api.Test
     void approveOffer() {
@@ -109,18 +84,7 @@ class SystemsTest {
     }
 
     @org.junit.jupiter.api.Test
-    void getOfferToUser() {
-    }
-
-    @org.junit.jupiter.api.Test
-    void getShipListToUser() {
-    }
-
-    @org.junit.jupiter.api.Test
     void addReviewToUser() {
     }
 
-    @org.junit.jupiter.api.Test
-    void getOfferOfshipType() {
-    }
 }
