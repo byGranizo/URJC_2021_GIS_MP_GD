@@ -1,9 +1,12 @@
 package System;
 
+import Offer.Offer;
+import Offer.OfferStatus;
 import Offer.Review;
 import Ship.Ship;
+import Ship.Types.FighterShip;
 import User.User;
-
+import Ship.ShipType;
 import static org.junit.jupiter.api.Assertions.*;
 import User.UserCreator;
 import User.UserRole;
@@ -45,12 +48,12 @@ class SystemsTest {
 
 
     @org.junit.jupiter.api.Test
-    void addOfferToList() {
+    void testAddOfferToList() {
 
     }
 
     @org.junit.jupiter.api.Test
-    void incrementUserWarning() {
+    void testIncrementUserWarning() {
         int antes = 0, despues = 0;
         Systems.getInstance().login("Alvaropin17", "123456");
         User user = Systems.getInstance().getCurrentUser();
@@ -64,15 +67,66 @@ class SystemsTest {
 
 
     @org.junit.jupiter.api.Test
-    void approveOffer() {
+    void testApproveOffer() {
+
+        Systems.getInstance().login("Alvaropin17", "123456");
+        User user = Systems.getInstance().getCurrentUser();
+        ArrayList<Ship> ships = new ArrayList<Ship>();
+        Ship ship = new FighterShip("546436", null, 5, 3, null, null);
+        ships.add(ship);
+        Systems.getInstance().addShipListToUser(ships);
+        Client client = (Client) user;
+        Offer offer = new Offer("54321", OfferStatus.NOT_REVIEWED, ships, 1, 5, 5, "12/12/2020", client); //aquí creo una oferta
+        client.setInterestedIn(ShipType.FIGHTER);
+        Systems.getInstance().addOfferToList(offer);
+        Systems.getInstance().approveOffer("54321");
+        ArrayList<Offer> offerlist = Systems.getInstance().getOffers();
+        offer = offerlist.get(0);
+        assertTrue(offer.getStatus()==OfferStatus.APPROVED);
+
     }
 
     @org.junit.jupiter.api.Test
-    void rejectOffer() {
+    void testRejectOffer() {
+        Systems.getInstance().login("Alvaropin17", "123456");
+        User user = Systems.getInstance().getCurrentUser();
+        ArrayList<Ship> ships = new ArrayList<Ship>();
+        Ship ship = new FighterShip("546436", null, 5, 3, null, null);
+        ships.add(ship);
+        Systems.getInstance().addShipListToUser(ships);
+        Client client = (Client) user;
+        Offer offer = new Offer("54321", OfferStatus.NOT_REVIEWED, ships, 1, 5, 5, "12/12/2020", client); //aquí creo una oferta
+        client.setInterestedIn(ShipType.FIGHTER);
+        Systems.getInstance().addOfferToList(offer);
+        Systems.getInstance().rejectOffer("54321");
+        ArrayList<Offer> offerlist = Systems.getInstance().getOffers();
+        int tamaño = offerlist.size();
+        assertTrue(tamaño == 0);
     }
 
     @org.junit.jupiter.api.Test
-    void buyOffer() {
+    void testBuyOffer() {
+        Systems.getInstance().login("Alvaropin17", "123456");
+        User user = Systems.getInstance().getCurrentUser();
+        ArrayList<Ship> ships = new ArrayList<Ship>();
+        Ship ship = new FighterShip("546436", null, 5, 3, null, null);
+        ships.add(ship);
+        Systems.getInstance().addShipListToUser(ships);
+        Client client = (Client) user;
+        Offer offer = new Offer("54321", OfferStatus.NOT_REVIEWED, ships, 1, 5, 5, "12/12/2020", client);
+        client.setInterestedIn(ShipType.FIGHTER);
+        Systems.getInstance().addOfferToList(offer);
+        Systems.getInstance().approveOffer("54321");
+
+
+        ArrayList<Ship> ships1 = new ArrayList<Ship>();
+        ArrayList<Review> reviews1 = new ArrayList<Review>();
+        User nuevoCliente = new Client("78095", "Odem Mortis", "Barbanegra", "holaquetal", UserRole.CLIENT, "098765", "Tierra", "Humano", ships1, 0, false, false, false, reviews1);
+        Systems.getInstance().addUserToList(nuevoCliente);
+        Systems.getInstance().login("Barbanegra", "098765");
+        User user2 = Systems.getInstance().getCurrentUser();
+
+
     }
 
     @org.junit.jupiter.api.Test
