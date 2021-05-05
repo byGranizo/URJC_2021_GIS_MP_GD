@@ -7,6 +7,7 @@ import Ship.Ship;
 import Ship.Types.FighterShip;
 import User.User;
 import Ship.ShipType;
+import Offer.SoldOffer;
 import static org.junit.jupiter.api.Assertions.*;
 import User.UserCreator;
 import User.UserRole;
@@ -118,23 +119,19 @@ class SystemsTest {
         Systems.getInstance().addOfferToList(offer);
         Systems.getInstance().approveOffer("54321");
 
-
-        ArrayList<Ship> ships1 = new ArrayList<Ship>();
-        ArrayList<Review> reviews1 = new ArrayList<Review>();
-        User nuevoCliente = new Client("78095", "Odem Mortis", "Barbanegra", "holaquetal", UserRole.CLIENT, "098765", "Tierra", "Humano", ships1, 0, false, false, false, reviews1);
-        Systems.getInstance().addUserToList(nuevoCliente);
-        Systems.getInstance().login("Barbanegra", "098765");
-        User user2 = Systems.getInstance().getCurrentUser();
-
+        Systems.getInstance().buyOffer("54321");
+        ArrayList<SoldOffer> offerlist = Systems.getInstance().getSoldOffers();
+        int tamaño = offerlist.size();
+        assertTrue(tamaño == 1);
 
     }
 
     @org.junit.jupiter.api.Test
-    void deleteShipsFromUser() {
+    void testDeleteShipsFromUser() {
     }
 
     @org.junit.jupiter.api.Test
-    void addShipListToUser() {
+    void testAddShipListToUser() {
     }
 
     @org.junit.jupiter.api.Test
