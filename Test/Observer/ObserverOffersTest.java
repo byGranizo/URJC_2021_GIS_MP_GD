@@ -31,32 +31,24 @@ class ObserverOffersTest {
         ArrayList<Ship> ships = new ArrayList<Ship>();
         ArrayList<Review> reviews = new ArrayList<Review>();
         User user = new Client("12345", "Alvaro Pindado", "Alvaropin17", "alvaro17pc", UserRole.CLIENT, "123456", "Tierra", "Humano", ships, 0, false, false, false, reviews);
+
         Systems.getInstance().addUserToList(user);
 
-         User user2 = new Admin("123", "Ana", "Ana1", "acc", UserRole.ADMIN, "holi");
-         Systems.getInstance().addUserToList(user2);
 
-         Systems.getInstance().login("Alvaropin17", "123456"); //me loggeo
-
-
+        Systems.getInstance().login("Alvaropin17", "123456"); //me loggeo
+        Client userCurrent = (Client) Systems.getInstance().getCurrentUser();
         ArrayList<Ship> ships2 = new ArrayList<Ship>();
         Ship ship = new FighterShip("546436", null, 5, 3, null, null);  //aquí añado la lista de naves al user
+        ship.setType(ShipType.FIGHTER);
         ships2.add(ship);
         Systems.getInstance().addShipListToUser(ships2);
-
-        Client client = (Client) Systems.getInstance().getCurrentUser();
-        Offer offer = new Offer("54321", OfferStatus.NOT_REVIEWED, ships2, 1, 5, 5, "12/12/2020", client); //aquí creo una oferta
-
-
+        userCurrent.setInterestedIn(ShipType.FIGHTER);
+        Offer offer = new Offer("54321", OfferStatus.NOT_REVIEWED, ships2, 1, 5, 5, "12/12/2020", userCurrent); //aquí creo una oferta
         Systems.getInstance().addOfferToList(offer); //aquí se añade la oferta a la lista de ofertas del sistema
 
-        client = (Client) Systems.getInstance().getCurrentUser();
-        notifications = client.getNotificaciones();
-        antes = notifications.size();
+        antes = userCurrent.getNotificaciones().size();
         Systems.getInstance().approveOffer("54321");
-        client = (Client) Systems.getInstance().getCurrentUser();
-        notifications = client.getNotificaciones();
-        despues = notifications.size();
-        assertTrue(despues>antes);
+        despues = userCurrent.getNotificaciones().size();
+        assertTrue(despues > antes);
     }
 }
