@@ -14,7 +14,6 @@ import User.User;
 import User.UserRole;
 
 public class ObserverOffers extends  Observable implements Observer, Serializable {
-
     @Override
     @SuppressWarnings("unchecked")
     public void update(Observable observable, Object args) {
