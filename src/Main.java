@@ -4,7 +4,7 @@ import MenuViews.MenuFlow;
 import java.util.Observer;
 import Observer.ObserverOffers;
 import System.Systems;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 
 public class Main {
