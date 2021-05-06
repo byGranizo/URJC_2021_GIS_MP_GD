@@ -9,14 +9,11 @@ import User.User;
 import Ship.ShipType;
 import Offer.SoldOffer;
 import static org.junit.jupiter.api.Assertions.*;
-import User.UserCreator;
 import User.UserRole;
 import User.Client;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-
 import java.util.ArrayList;
+
 
 class SystemsTest {
 
@@ -50,6 +47,18 @@ class SystemsTest {
 
     @org.junit.jupiter.api.Test
     void testAddOfferToList() {
+        Systems.getInstance().login("Alvaropin17", "123456");
+        User user = Systems.getInstance().getCurrentUser();
+        ArrayList<Ship> ships = new ArrayList<Ship>();
+        Ship ship = new FighterShip("546436", null, 5, 3, null, null);
+        ships.add(ship);
+        Systems.getInstance().addShipListToUser(ships);
+        Client client = (Client) user;
+        Offer offer = new Offer("54321", OfferStatus.NOT_REVIEWED, ships, 1, 5, 5, "12/12/2020", client); //aquí creo una oferta
+        Systems.getInstance().addOfferToList(offer);
+        ArrayList<Offer> offerlist = Systems.getInstance().getOffers();
+        int numero = offerlist.size();
+        assertTrue(numero==1);
 
     }
 
@@ -128,14 +137,34 @@ class SystemsTest {
 
     @org.junit.jupiter.api.Test
     void testDeleteShipsFromUser() {
+
+
     }
 
     @org.junit.jupiter.api.Test
     void testAddShipListToUser() {
+        Systems.getInstance().login("Alvaropin17", "123456");
+        User user = Systems.getInstance().getCurrentUser();
+        ArrayList<Ship> ships = new ArrayList<Ship>();
+        Ship ship = new FighterShip("546436", null, 5, 3, null, null);
+        ships.add(ship);
+        Systems.getInstance().addShipListToUser(ships);
+        ArrayList<Ship> ships2 = Systems.getInstance().getShipListToUser();
+       int antes = ships.size();
+       int despues = ships2.size();
+       boolean coincide = antes == despues;
+
+       Ship barco1 = ships.get(0);
+       Ship barco2 = ships2.get(0);
+       boolean coincide2 = (barco1==barco2);
+       assertTrue(coincide2==coincide);
     }
 
     @org.junit.jupiter.api.Test
     void addReviewToUser() {
+        Systems.getInstance().login("Alvaropin17", "123456");
+        User user = Systems.getInstance().getCurrentUser();
+
     }
 
 }
