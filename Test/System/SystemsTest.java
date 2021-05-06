@@ -40,7 +40,7 @@ class SystemsTest {
     @org.junit.jupiter.api.Test
     void testLogin2() {
 
-        boolean xpresult = Systems.getInstance().login("Alvaropin98", "123456");
+        boolean xpresult = Systems.getInstance().login("Alvaropin17", "1237786");
         assertFalse(xpresult);
     }
 
@@ -54,7 +54,7 @@ class SystemsTest {
         ships.add(ship);
         Systems.getInstance().addShipListToUser(ships);
         Client client = (Client) user;
-        Offer offer = new Offer("54321", OfferStatus.NOT_REVIEWED, ships, 1, 5, 5, "12/12/2020", client); //aquí creo una oferta
+        Offer offer = new Offer("54321", OfferStatus.NOT_REVIEWED, ships, 1, 5, 5, "12/12/2020", client);
         Systems.getInstance().addOfferToList(offer);
         ArrayList<Offer> offerlist = Systems.getInstance().getOffers();
         int numero = offerlist.size();
@@ -161,9 +161,11 @@ class SystemsTest {
     }
 
     @org.junit.jupiter.api.Test
-    void addReviewToUser() {
+    void testAddReviewToUser() {
         Systems.getInstance().login("Alvaropin17", "123456");
         User user = Systems.getInstance().getCurrentUser();
+
+        Review review = new Review("Comentario de prueba");
 
     }
 
