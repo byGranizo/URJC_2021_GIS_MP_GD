@@ -128,8 +128,16 @@ public class ShipCreator implements Serializable {
     private  static Engine[] createEngineArray(){
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("Number of engines(1-2):");
-        int nEngines = scan.nextInt();
+        int nEngines = 0;
+        while(nEngines < 1 || nEngines > 2){
+            System.out.println("Number of engines(1-2):");
+            nEngines = scan.nextInt();
+
+            if(nEngines < 1 || nEngines > 2){
+                System.out.println("Wrong input");
+            }
+        }
+
 
         Engine[] engines = new Engine[nEngines];
         for(int i=0;i<nEngines;i++){
@@ -178,8 +186,16 @@ public class ShipCreator implements Serializable {
     private  static Weapon[] createWeaponArray(String max){
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("Number of weapons(1-" + max + "):");
-        int nWeapons = scan.nextInt();
+        int nWeapons = 0;
+        int maxInt = max.equals("infinite") ? Integer.MAX_VALUE : Integer.parseInt(max);
+        while(nWeapons < 1 || nWeapons > maxInt){
+            System.out.println("Number of weapons(1-" + maxInt + "):");
+            nWeapons = scan.nextInt();
+
+            if(nWeapons < 1 || nWeapons > maxInt){
+                System.out.println("Wrong input");
+            }
+        }
 
         Weapon[] weapons = new Weapon[nWeapons];
         for(int i=0;i<nWeapons;i++){
@@ -224,8 +240,17 @@ public class ShipCreator implements Serializable {
     private  static Defense[] createDefenseArray(String max){
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("Number of defenses(1-" + max + "):");
-        int nDefenses = scan.nextInt();
+        int nDefenses = 0;
+        int maxInt = max.equals("infinite") ? Integer.MAX_VALUE : Integer.parseInt(max);
+        while(nDefenses < 1 || nDefenses > maxInt){
+            System.out.println("Number of defenses(1-" + maxInt + "):");
+            nDefenses = scan.nextInt();
+
+            if(nDefenses < 1 || nDefenses > maxInt){
+                System.out.println("Wrong input");
+            }
+        }
+
 
         Defense[] defenses = new Defense[nDefenses];
         for(int i=0;i<nDefenses;i++){

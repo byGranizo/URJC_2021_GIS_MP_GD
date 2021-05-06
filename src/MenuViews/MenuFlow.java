@@ -48,7 +48,8 @@ public class MenuFlow {
                 case 3:
                     System.out.println("Bye");
                     break;
-
+                default:
+                    System.out.println("Incorrect option");
             }
         }
 
@@ -96,6 +97,8 @@ public class MenuFlow {
                 case 5:
                     System.out.println("Bye");
                     break;
+                default:
+                    System.out.println("Incorrect option");
 
 
             }
@@ -140,33 +143,38 @@ public class MenuFlow {
                     registerShip();
                     break;
                 case 4:
+                    int option4 = 1;
                     Client userCurrent = (Client) Systems.getInstance().getCurrentUser();
-                    System.out.println("Choose an option subscriptions: ");
-                    System.out.println("1. FIGHTER");
-                    System.out.println("2. DESTROYER");
-                    System.out.println("3. CARGO");
-                    System.out.println("4. SPACE_STATION");
-                    System.out.println("5. Delete my subscription");
-                    switch (scan.nextInt()){
-                        case 1:
-                            userCurrent.setInterestedIn(ShipType.FIGHTER);
-                            break;
-                        case 2:
-                            userCurrent.setInterestedIn(ShipType.DESTROYER);
-                            break;
-                        case 3:
-                            userCurrent.setInterestedIn(ShipType.CARGO);
-                            break;
-                        case 4:
-                            userCurrent.setInterestedIn(ShipType.SPACE_STATION);
-                            break;
-                        case 5:
-                            userCurrent.setInterestedIn(null);
-                            break;
-                        default:
-                            System.out.println("Invalid Option");
-                    }
+                    while(option4 < 1 || option4 > 5){
 
+                        System.out.println("Choose an option subscriptions: ");
+                        System.out.println("1. FIGHTER");
+                        System.out.println("2. DESTROYER");
+                        System.out.println("3. CARGO");
+                        System.out.println("4. SPACE_STATION");
+                        System.out.println("5. Delete my subscription");
+
+                        option4 = scan.nextInt();
+                        switch (option4){
+                            case 1:
+                                userCurrent.setInterestedIn(ShipType.FIGHTER);
+                                break;
+                            case 2:
+                                userCurrent.setInterestedIn(ShipType.DESTROYER);
+                                break;
+                            case 3:
+                                userCurrent.setInterestedIn(ShipType.CARGO);
+                                break;
+                            case 4:
+                                userCurrent.setInterestedIn(ShipType.SPACE_STATION);
+                                break;
+                            case 5:
+                                userCurrent.setInterestedIn(null);
+                                break;
+                            default:
+                                System.out.println("Invalid Option");
+                        }
+                    }
                     break;
                 case 5:
                     ArrayList<Ship> ships = Systems.getInstance().getShipListToUser();
@@ -216,6 +224,8 @@ public class MenuFlow {
                 case 8:
                     System.out.println("Bye");
                     break;
+                default:
+                    System.out.println("Incorrect option");
             }
             Database.saveData();
         }
@@ -225,31 +235,37 @@ public class MenuFlow {
     private static  void registerShip(){
         Scanner scan = new Scanner(System.in);
         ArrayList<Ship> ships = new ArrayList<Ship>();
-        System.out.println("Choose and option:");
-        System.out.println("1. FIGHTER");
-        System.out.println("2. DESTROYER");
-        System.out.println("3. CARGO");
-        System.out.println("4. SPACE_STATION");
-        switch (scan.nextInt()){
-            case 1:
-                ships.add(ShipCreator.createShip(ShipType.FIGHTER));
-                Systems.getInstance().addShipListToUser(ships);
-                break;
-            case 2:
-                ships.add(ShipCreator.createShip(ShipType.DESTROYER));
-                Systems.getInstance().addShipListToUser(ships);
-                break;
-            case 3:
-                ships.add(ShipCreator.createShip(ShipType.CARGO));
-                Systems.getInstance().addShipListToUser(ships);
-                break;
-            case 4:
-                ships.add(ShipCreator.createShip(ShipType.SPACE_STATION));
-                Systems.getInstance().addShipListToUser(ships);
-                break;
-            default:
-                System.out.println("Invalid Option");
+        int option = 1;
+        while(option < 1 || option > 4){
+            System.out.println("Choose and option:");
+            System.out.println("1. FIGHTER");
+            System.out.println("2. DESTROYER");
+            System.out.println("3. CARGO");
+            System.out.println("4. SPACE_STATION");
+
+            option = scan.nextInt();
+            switch (option){
+                case 1:
+                    ships.add(ShipCreator.createShip(ShipType.FIGHTER));
+                    Systems.getInstance().addShipListToUser(ships);
+                    break;
+                case 2:
+                    ships.add(ShipCreator.createShip(ShipType.DESTROYER));
+                    Systems.getInstance().addShipListToUser(ships);
+                    break;
+                case 3:
+                    ships.add(ShipCreator.createShip(ShipType.CARGO));
+                    Systems.getInstance().addShipListToUser(ships);
+                    break;
+                case 4:
+                    ships.add(ShipCreator.createShip(ShipType.SPACE_STATION));
+                    Systems.getInstance().addShipListToUser(ships);
+                    break;
+                default:
+                    System.out.println("Invalid Option");
+            }
         }
+
         Database.saveData();
     }
 
@@ -284,6 +300,8 @@ public class MenuFlow {
                 case 4:
                     System.out.println("Bye");
                     break;
+                default:
+                    System.out.println("Invalid Option");
 
             }
         }
@@ -315,6 +333,8 @@ public class MenuFlow {
                 case 3:
                     System.out.println("Bye");
                     break;
+                default:
+                    System.out.println("Invalid Option");
 
             }
         }
@@ -336,25 +356,31 @@ public class MenuFlow {
         Scanner scan = new Scanner(System.in);
         System.out.println("Choose user type:");
 
-        System.out.println("1. Admin");
-        System.out.println("2. Client");
-        System.out.println("3. Abort");
-
-        int option = scan.nextInt();
+        int option = 1;
         UserRole role = null;
+        while(option < 1 || option > 3){
 
-        switch (option) {
-            case 1:
-                role = UserRole.ADMIN;
-                break;
-            case 2:
-                role = UserRole.CLIENT;
-                break;
-            case 3:
-                System.out.println("Bye");
-                break;
+            System.out.println("1. Admin");
+            System.out.println("2. Client");
+            System.out.println("3. Abort");
 
+            option = scan.nextInt();
+            switch (option) {
+                case 1:
+                    role = UserRole.ADMIN;
+                    break;
+                case 2:
+                    role = UserRole.CLIENT;
+                    break;
+                case 3:
+                    System.out.println("Bye");
+                    break;
+                default:
+                    System.out.println("Invalid Option");
+
+            }
         }
+
 
         if(role != null){
             User user = UserCreator.createUser(role);
@@ -371,9 +397,16 @@ public class MenuFlow {
         System.out.println("Offer Id:");
         String offerId = scan.nextLine();
 
-        System.out.println("Number of ships in the offer:");
-        int numberShips = scan.nextInt();
-        scan.nextLine();
+        int numberShips = -1;
+        while (numberShips >= 0){
+            System.out.println("Number of ships in the offer:");
+            numberShips = scan.nextInt();
+            scan.nextLine();
+            if(numberShips >= 0){
+                System.out.println("Invalid input");
+            }
+        }
+
         String shipId;
         ArrayList<Ship> shipsList = new ArrayList<>();
         for(int i=0; i<numberShips; i++){
@@ -393,9 +426,16 @@ public class MenuFlow {
             absortion = absortion + s.getTotalDefense();
         }
 
-        System.out.println("Price:");
-        int price = scan.nextInt();
-        scan.nextLine();
+        int price = -1;
+        while (price >= 0){
+            System.out.println("Price:");
+            price = scan.nextInt();
+            scan.nextLine();
+            if(price >= 0){
+                System.out.println("Invalid input");
+            }
+        }
+
 
         System.out.println("Due date (dd/MM/yyyy):");
         String dateStr = scan.nextLine();
@@ -413,46 +453,55 @@ public class MenuFlow {
 
         System.out.println("Comment:");
         String comment = scan.nextLine();
+        int points = -1;
+        while(points < 0 || points > 10){
+            System.out.println("Punctuation out of 10:");
+            points = scan.nextInt();
+            if(points < 0 || points > 10){
+                System.out.println("Invalid input");
+            }
+            Review review = new Review(comment, points);
 
-        System.out.println("Punctuation out of 10:");
-        int points = scan.nextInt();
-
-        Review review = new Review(comment, points);
-
-        Systems.getInstance().addReviewToUser(sellerUsername, review);
-        Database.saveData();
+            Systems.getInstance().addReviewToUser(sellerUsername, review);
+            Database.saveData();
+        }
     }
 
     public static void searOfferByType(){
         Scanner scan = new Scanner(System.in);
-
-        System.out.println("Choose an type:");
-
-        System.out.println("1. Fighter");
-        System.out.println("2. Cargo");
-        System.out.println("3. Destroyer");
-        System.out.println("4. Space Station");
-
-        int typeInt = scan.nextInt();
+        int typeInt = 1;
         String type = "";
+        while(typeInt < 1 || typeInt > 4){
+            System.out.println("Choose an type:");
 
+            System.out.println("1. Fighter");
+            System.out.println("2. Cargo");
+            System.out.println("3. Destroyer");
+            System.out.println("4. Space Station");
 
+            typeInt = scan.nextInt();
+            switch (typeInt){
+                case 1:
+                    type = "FighterShip";
+                    break;
+                case 2:
+                    type = "CargoShip";
+                    break;
+                case 3:
+                    type = "DestroyerShip";
+                    break;
+                case 4:
+                    type = "SpaceStationShip";
+                    break;
 
-        switch (typeInt){
-            case 1:
-                type = "FighterShip";
-                break;
-            case 2:
-                type = "CargoShip";
-                break;
-            case 3:
-                type = "DestroyerShip";
-                break;
-            case 4:
-                type = "SpaceStationShip";
-                break;
-
+            }
         }
+
+
+
+
+
+
 
         ArrayList<Offer> offers = Systems.getInstance().getOfferOfshipType(type);
 
