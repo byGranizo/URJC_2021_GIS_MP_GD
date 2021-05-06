@@ -10,6 +10,8 @@ import java.io.Serializable;
 import java.util.Scanner;
 
 public class ShipCreator implements Serializable {
+
+
     public static Ship createShip(ShipType type){
         Ship ship = null;
         switch (type){
