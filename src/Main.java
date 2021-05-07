@@ -6,7 +6,10 @@ import Observer.ObserverOffers;
 import System.Systems;
 import org.testng.annotations.Test;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> feature/SystemTests
 public class Main {
 @Test
     public static void main(String[] args) {
