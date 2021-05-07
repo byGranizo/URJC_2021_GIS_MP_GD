@@ -4,7 +4,8 @@ import MenuViews.MenuFlow;
 import java.util.Observer;
 import Observer.ObserverOffers;
 import System.Systems;
-import org.testng.annotations.Test;
+import org.junit.Test;
+
 
 public class Main {
 @Test

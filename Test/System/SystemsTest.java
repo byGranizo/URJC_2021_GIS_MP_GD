@@ -75,6 +75,8 @@ class SystemsTest {
         assertTrue(despues > antes);
 
     }
+
+    @org.junit.jupiter.api.Test
     void testApproveOffer() {
 
         Systems.getInstance().login("Alvaropin17", "123456");
