@@ -75,12 +75,6 @@ class SystemsTest {
         assertTrue(despues > antes);
 
     }
-
-
-    @org.junit.jupiter.api.Test
-<<<<<<< HEAD
-    void login() {
-=======
     void testApproveOffer() {
 
         Systems.getInstance().login("Alvaropin17", "123456");
@@ -150,12 +144,9 @@ class SystemsTest {
         ships.add(ship2);
         Client client = (Client) user;
         Systems.getInstance().addShipListToUser(ships);
-        Systems.getInstance().deleteShipsFromUser(ships,client);
+        Systems.getInstance().deleteShipsFromUser(ships, client);
         ArrayList<Ship> ships2 = client.getShips();
-        assertTrue(ships2.size()==0);
-
->>>>>>> feature/SystemTests
-
+        assertTrue(ships2.size() == 0);
     }
 
     @org.junit.jupiter.api.Test
