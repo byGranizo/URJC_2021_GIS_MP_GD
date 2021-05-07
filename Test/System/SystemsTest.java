@@ -21,19 +21,23 @@ class SystemsTest {
 
 
     @BeforeEach
-    void CrearUsuario() {
+    void ReseteaUsuarios() {
 
-        ArrayList<Ship> ships = new ArrayList<Ship>();
-        ArrayList<Review> reviews = new ArrayList<Review>();
-        User user = new Client("12345", "Alvaro Pindado", "Alvaropin17", "alvaro17pc", UserRole.CLIENT, "123456", "Tierra", "Humano", ships, 0, false, false, false, reviews);
-        Systems.getInstance().addUserToList(user);
-
+            ArrayList<User> listaUsuariosNueva = new ArrayList<User>();
+            ArrayList<Offer> listaOfertasNueva = new ArrayList<Offer>();
+            Systems.getInstance().setUsers(listaUsuariosNueva);
+            Systems.getInstance().setOffers(listaOfertasNueva);
     }
 
 
     @org.junit.jupiter.api.Test
     void testLogin1() {
 
+        ArrayList<Ship> NEWships = new ArrayList<Ship>();
+        ArrayList<Review> reviews = new ArrayList<Review>();
+        User NEWuser = new Client("12345", "Alvaro Pindado", "Alvaropin17", "alvaro17pc", UserRole.CLIENT, "123456", "Tierra", "Humano", NEWships, 0, false, false, false, reviews);
+        Systems.getInstance().addUserToList(NEWuser);
+        Systems.getInstance().login("Alvaropin17", "123456");
         boolean xpresult = Systems.getInstance().login("Alvaropin17", "123456");
         assertTrue(xpresult);
     }
@@ -41,6 +45,11 @@ class SystemsTest {
     @org.junit.jupiter.api.Test
     void testLogin2() {
 
+        ArrayList<Ship> NEWships = new ArrayList<Ship>();
+        ArrayList<Review> reviews = new ArrayList<Review>();
+        User NEWuser = new Client("12345", "Alvaro Pindado", "Alvaropin17", "alvaro17pc", UserRole.CLIENT, "123456", "Tierra", "Humano", NEWships, 0, false, false, false, reviews);
+        Systems.getInstance().addUserToList(NEWuser);
+        Systems.getInstance().login("Alvaropin17", "123456");
         boolean xpresult = Systems.getInstance().login("Alvaropin17", "1237786");
         assertFalse(xpresult);
     }
@@ -48,6 +57,11 @@ class SystemsTest {
 
     @org.junit.jupiter.api.Test
     void testAddOfferToList() {
+
+        ArrayList<Ship> NEWships = new ArrayList<Ship>();
+        ArrayList<Review> reviews = new ArrayList<Review>();
+        User NEWuser = new Client("12345", "Alvaro Pindado", "Alvaropin17", "alvaro17pc", UserRole.CLIENT, "123456", "Tierra", "Humano", NEWships, 0, false, false, false, reviews);
+        Systems.getInstance().addUserToList(NEWuser);
         Systems.getInstance().login("Alvaropin17", "123456");
         User user = Systems.getInstance().getCurrentUser();
         ArrayList<Ship> ships = new ArrayList<Ship>();
@@ -65,8 +79,13 @@ class SystemsTest {
 
     @org.junit.jupiter.api.Test
     void testIncrementUserWarning() {
-        int antes = 0, despues = 0;
+
+        ArrayList<Ship> NEWships = new ArrayList<Ship>();
+        ArrayList<Review> reviews = new ArrayList<Review>();
+        User NEWuser = new Client("12345", "Alvaro Pindado", "Alvaropin17", "alvaro17pc", UserRole.CLIENT, "123456", "Tierra", "Humano", NEWships, 0, false, false, false, reviews);
+        Systems.getInstance().addUserToList(NEWuser);
         Systems.getInstance().login("Alvaropin17", "123456");
+        int antes = 0, despues = 0;
         User user = Systems.getInstance().getCurrentUser();
         Client client = (Client) user;
         antes = client.getnWarnings();
@@ -79,14 +98,19 @@ class SystemsTest {
     @org.junit.jupiter.api.Test
     void testApproveOffer() {
 
+
+        ArrayList<Ship> NEWships = new ArrayList<Ship>();
+        ArrayList<Review> reviews = new ArrayList<Review>();
+        User NEWuser = new Client("12345", "Alvaro Pindado", "Alvaropin17", "alvaro17pc", UserRole.CLIENT, "123456", "Tierra", "Humano", NEWships, 0, false, false, false, reviews);
+        Systems.getInstance().addUserToList(NEWuser);
         Systems.getInstance().login("Alvaropin17", "123456");
         User user = Systems.getInstance().getCurrentUser();
         ArrayList<Ship> ships = new ArrayList<Ship>();
-        Ship ship = new FighterShip("546436", null, 5, 3, null, null);
+        Ship ship = new FighterShip("86786", null, 5, 3, null, null);
         ships.add(ship);
         Systems.getInstance().addShipListToUser(ships);
         Client client = (Client) user;
-        Offer offer = new Offer("54321", OfferStatus.NOT_REVIEWED, ships, 1, 5, 5, "12/12/2020", client); //aquí creo una oferta
+        Offer offer = new Offer("54321", OfferStatus.NOT_REVIEWED, ships, 1, 5, 5, "12/12/2020", client);
         client.setInterestedIn(ShipType.FIGHTER);
         Systems.getInstance().addOfferToList(offer);
         Systems.getInstance().approveOffer("54321");
@@ -98,10 +122,17 @@ class SystemsTest {
 
     @org.junit.jupiter.api.Test
     void testRejectOffer() {
+
+        ArrayList<Ship> NEWships = new ArrayList<Ship>();
+        ArrayList<Review> reviews = new ArrayList<Review>();
+        User NEWuser = new Client("12345", "Alvaro Pindado", "Alvaropin17", "alvaro17pc", UserRole.CLIENT, "123456", "Tierra", "Humano", NEWships, 0, false, false, false, reviews);
+        Systems.getInstance().addUserToList(NEWuser);
         Systems.getInstance().login("Alvaropin17", "123456");
         User user = Systems.getInstance().getCurrentUser();
+
+
         ArrayList<Ship> ships = new ArrayList<Ship>();
-        Ship ship = new FighterShip("546436", null, 5, 3, null, null);
+        Ship ship = new FighterShip("345356", null, 5, 3, null, null);
         ships.add(ship);
         Systems.getInstance().addShipListToUser(ships);
         Client client = (Client) user;
@@ -111,15 +142,21 @@ class SystemsTest {
         Systems.getInstance().rejectOffer("54321");
         ArrayList<Offer> offerlist = Systems.getInstance().getOffers();
         int tamaño = offerlist.size();
+        System.out.println(tamaño);
         assertTrue(tamaño == 0);
     }
 
     @org.junit.jupiter.api.Test
     void testBuyOffer() {
+
+        ArrayList<Ship> NEWships = new ArrayList<Ship>();
+        ArrayList<Review> reviews = new ArrayList<Review>();
+        User NEWuser = new Client("12345", "Alvaro Pindado", "Alvaropin17", "alvaro17pc", UserRole.CLIENT, "123456", "Tierra", "Humano", NEWships, 0, false, false, false, reviews);
+        Systems.getInstance().addUserToList(NEWuser);
         Systems.getInstance().login("Alvaropin17", "123456");
         User user = Systems.getInstance().getCurrentUser();
         ArrayList<Ship> ships = new ArrayList<Ship>();
-        Ship ship = new FighterShip("546436", null, 5, 3, null, null);
+        Ship ship = new FighterShip("14312343", null, 5, 3, null, null);
         ships.add(ship);
         Systems.getInstance().addShipListToUser(ships);
         Client client = (Client) user;
@@ -137,11 +174,16 @@ class SystemsTest {
 
     @org.junit.jupiter.api.Test
     void testDeleteShipsFromUser() {
+
+        ArrayList<Ship> NEWships = new ArrayList<Ship>();
+        ArrayList<Review> reviews = new ArrayList<Review>();
+        User NEWuser = new Client("12345", "Alvaro Pindado", "Alvaropin17", "alvaro17pc", UserRole.CLIENT, "123456", "Tierra", "Humano", NEWships, 0, false, false, false, reviews);
+        Systems.getInstance().addUserToList(NEWuser);
         Systems.getInstance().login("Alvaropin17", "123456");
         User user = Systems.getInstance().getCurrentUser();
         ArrayList<Ship> ships = new ArrayList<Ship>();
-        Ship ship = new FighterShip("546436", null, 5, 3, null, null);
-        Ship ship2 = new DestroyerShip("54231", null, 5, 3, 7, null, null);
+        Ship ship = new FighterShip("432532532", null, 5, 3, null, null);
+        Ship ship2 = new DestroyerShip("54363634", null, 5, 3, 7, null, null);
         ships.add(ship);
         ships.add(ship2);
         Client client = (Client) user;
@@ -153,25 +195,40 @@ class SystemsTest {
 
     @org.junit.jupiter.api.Test
     void testAddShipListToUser() {
+
+
+        ArrayList<Ship> NEWships = new ArrayList<Ship>();
+        ArrayList<Review> reviews = new ArrayList<Review>();
+        User NEWuser = new Client("12345", "Alvaro Pindado", "Alvaropin17", "alvaro17pc", UserRole.CLIENT, "123456", "Tierra", "Humano", NEWships, 0, false, false, false, reviews);
+        Systems.getInstance().addUserToList(NEWuser);
         Systems.getInstance().login("Alvaropin17", "123456");
         User user = Systems.getInstance().getCurrentUser();
         ArrayList<Ship> ships = new ArrayList<Ship>();
-        Ship ship = new FighterShip("546436", null, 5, 3, null, null);
+        Ship ship = new FighterShip("675432143", null, 5, 3, null, null);
         ships.add(ship);
         Systems.getInstance().addShipListToUser(ships);
+        int antes = ships.size();
         ArrayList<Ship> ships2 = Systems.getInstance().getShipListToUser();
-       int antes = ships.size();
+
        int despues = ships2.size();
+       System.out.println(antes);
+       System.out.println(despues);
        boolean coincide = antes == despues;
 
        Ship barco1 = ships.get(0);
        Ship barco2 = ships2.get(0);
        boolean coincide2 = (barco1==barco2);
+
        assertTrue(coincide2==coincide);
     }
 
     @org.junit.jupiter.api.Test
     void testAddReviewToUser() {
+
+        ArrayList<Ship> NEWships = new ArrayList<Ship>();
+        ArrayList<Review> reviews = new ArrayList<Review>();
+        User NEWuser = new Client("12345", "Alvaro Pindado", "Alvaropin17", "alvaro17pc", UserRole.CLIENT, "123456", "Tierra", "Humano", NEWships, 0, false, false, false, reviews);
+        Systems.getInstance().addUserToList(NEWuser);
         Systems.getInstance().login("Alvaropin17", "123456");
         User user = Systems.getInstance().getCurrentUser();
         Client client = (Client) user;

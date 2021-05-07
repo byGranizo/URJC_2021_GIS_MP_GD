@@ -233,7 +233,6 @@ public final class Systems implements Serializable {
                 ArrayList<Ship> clientShipList = client.getShips();
                 clientShipList.addAll(shipList);
                 client.setShips(clientShipList);
-
                 users.set(i, client);
                 return;
             }
@@ -262,6 +261,7 @@ public final class Systems implements Serializable {
             if (user.getUsername().equals(currentUser.getUsername()) && user.getRole() == UserRole.CLIENT){
                 client = (Client) user;
                 ships = client.getShips();
+
             }
         }
         return ships;
