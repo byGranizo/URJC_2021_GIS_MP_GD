@@ -142,7 +142,7 @@ class SystemsTest {
         Systems.getInstance().rejectOffer("54321");
         ArrayList<Offer> offerlist = Systems.getInstance().getOffers();
         int tamaño = offerlist.size();
-        System.out.println(tamaño);
+
         assertTrue(tamaño == 0);
     }
 
@@ -211,8 +211,6 @@ class SystemsTest {
         ArrayList<Ship> ships2 = Systems.getInstance().getShipListToUser();
 
        int despues = ships2.size();
-       System.out.println(antes);
-       System.out.println(despues);
        boolean coincide = antes == despues;
 
        Ship barco1 = ships.get(0);
