@@ -4,6 +4,7 @@ import Offer.Offer;
 import Offer.OfferStatus;
 import Offer.Review;
 import Ship.Ship;
+import Ship.Types.DestroyerShip;
 import Ship.Types.FighterShip;
 import User.User;
 import Ship.ShipType;
@@ -137,6 +138,18 @@ class SystemsTest {
 
     @org.junit.jupiter.api.Test
     void testDeleteShipsFromUser() {
+        Systems.getInstance().login("Alvaropin17", "123456");
+        User user = Systems.getInstance().getCurrentUser();
+        ArrayList<Ship> ships = new ArrayList<Ship>();
+        Ship ship = new FighterShip("546436", null, 5, 3, null, null);
+        Ship ship2 = new DestroyerShip("54231", null, 5, 3, 7, null, null);
+        ships.add(ship);
+        ships.add(ship2);
+        Client client = (Client) user;
+        Systems.getInstance().addShipListToUser(ships);
+        Systems.getInstance().deleteShipsFromUser(ships,client);
+        ArrayList<Ship> ships2 = client.getShips();
+        assertTrue(ships2.size()==0);
 
 
     }
@@ -164,8 +177,16 @@ class SystemsTest {
     void testAddReviewToUser() {
         Systems.getInstance().login("Alvaropin17", "123456");
         User user = Systems.getInstance().getCurrentUser();
+        Client client = (Client) user;
+        ArrayList<Review> listareviews = client.getReviews();
+        int antes = listareviews.size();
+        Review review = new Review("Comentario de prueba", 5);
+        Systems.getInstance().addReviewToUser("Alvaropin17", review);
 
-        Review review = new Review("Comentario de prueba");
+        ArrayList<Review> listareviews2 = client.getReviews();
+        int despues = listareviews2.size();
+
+        assertTrue(despues-antes==1);
 
     }
 
