@@ -502,12 +502,6 @@ public class MenuFlow {
             }
         }
 
-
-
-
-
-
-
         ArrayList<Offer> offers = Systems.getInstance().getOfferOfshipType(type);
 
         for (Offer offer : offers){

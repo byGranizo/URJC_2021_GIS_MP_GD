@@ -78,8 +78,15 @@ public class ShipCreator implements Serializable {
             }
         }
 
-        System.out.println("Crew size:");
-        int crewSize = scan.nextInt();
+        int crewSize = -1;
+        while (crewSize < 0){
+            System.out.println("Crew size:");
+            crewSize = scan.nextInt();
+            scan.nextLine();
+            if(crewSize < 0){
+                System.out.println("Invalid input");
+            }
+        }
 
         Engine[] engines = createEngineArray();
 
@@ -113,11 +120,28 @@ public class ShipCreator implements Serializable {
             }
         }
 
-        System.out.println("Crew size:");
-        int crewSize = scan.nextInt();
 
-        System.out.println("Cargo capacity:");
-        int maxWeight = scan.nextInt();
+
+        int crewSize = -1;
+        while (crewSize < 0){
+            System.out.println("Crew size:");
+            crewSize = scan.nextInt();
+            scan.nextLine();
+            if(crewSize < 0){
+                System.out.println("Invalid input");
+            }
+        }
+
+        int maxWeight = -1;
+        while (maxWeight < 0){
+            System.out.println("Cargo capacity:");
+            maxWeight = scan.nextInt();
+            scan.nextLine();
+            if(maxWeight < 0){
+                System.out.println("Invalid input");
+            }
+        }
+
 
         Engine[] engines = createEngineArray();
 
@@ -140,13 +164,27 @@ public class ShipCreator implements Serializable {
             }
         }
 
-        System.out.println("Crew size:");
-        int crewSize = scan.nextInt();
-        scan.nextLine();
+        int crewSize = -1;
+        while (crewSize < 0){
+            System.out.println("Crew size:");
+            crewSize = scan.nextInt();
+            scan.nextLine();
+            if(crewSize < 0){
+                System.out.println("Invalid input");
+            }
+        }
 
-        System.out.println("Maximum passengers:");
-        int maxPassengers = scan.nextInt();
-        scan.nextLine();
+
+        int maxPassengers = -1;
+        while (maxPassengers < 0){
+            System.out.println("Maximum passengers:");
+            maxPassengers = scan.nextInt();
+            scan.nextLine();
+            if(maxPassengers < 0){
+                System.out.println("Invalid input");
+            }
+        }
+
 
         Engine[] engines = createEngineArray();
 
@@ -185,9 +223,9 @@ public class ShipCreator implements Serializable {
     private static Engine createEngine(){
         Scanner scan = new Scanner(System.in);
 
-        int typeInt = scan.nextInt();
-        scan.nextLine();
+        int typeInt = -1;
         EngineType type = null;
+
         while(typeInt < 1 || typeInt > 5){
             System.out.println("Enter engine type");
             System.out.println("1. curvature motor");
@@ -257,34 +295,45 @@ public class ShipCreator implements Serializable {
     private static Weapon createWeapon(){
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("Enter weapon type");
-        System.out.println("1. Plasma cannons");
-        System.out.println("2. Thermonucelar missiles");
-        System.out.println("3. Laser rays");
-        System.out.println("4. PEM");
-
-        int typeInt = scan.nextInt();
-        scan.nextLine();
+        int typeInt = -1;
         WeaponType type = null;
+        while(typeInt < 1 || typeInt > 4){
+            System.out.println("Enter weapon type");
+            System.out.println("1. Plasma cannons");
+            System.out.println("2. Thermonucelar missiles");
+            System.out.println("3. Laser rays");
+            System.out.println("4. PEM");
 
-        switch (typeInt) {
-            case 1:
-                type = WeaponType.PLASMA_CANNONS;
-                break;
-            case 2:
-                type = WeaponType.THERMONUCLEAR_MISSILES;
-                break;
-            case 3:
-                type = WeaponType.LASER_RAYS;
-                break;
-            case 4:
-                type = WeaponType.PEM;
-                break;
+            typeInt = scan.nextInt();
+            scan.nextLine();
+
+            switch (typeInt) {
+                case 1:
+                    type = WeaponType.PLASMA_CANNONS;
+                    break;
+                case 2:
+                    type = WeaponType.THERMONUCLEAR_MISSILES;
+                    break;
+                case 3:
+                    type = WeaponType.LASER_RAYS;
+                    break;
+                case 4:
+                    type = WeaponType.PEM;
+                    break;
+            }
         }
 
-        System.out.println("Power:");
-        int power = scan.nextInt();
-        scan.nextLine();
+
+        int power = -1;
+        while (power < 0){
+            System.out.println("Power:");
+            power = scan.nextInt();
+            scan.nextLine();
+            if(power < 0){
+                System.out.println("Invalid input");
+            }
+        }
+
 
         return new Weapon(type, power);
     }
@@ -315,43 +364,63 @@ public class ShipCreator implements Serializable {
     private static Defense createDefense(){
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("Enter defense type");
-        System.out.println("1. Shield");
-        System.out.println("2. Armor");
-
-        int typeInt = scan.nextInt();
-        scan.nextLine();
-
+        int typeInt = -1;
         Defense defense = null;
         int absorption;
-        switch (typeInt) {
-            case 1:
-                System.out.println("Absorption:");
-                absorption = scan.nextInt();
-                scan.nextLine();
 
-                System.out.println("Energy:");
-                int energy = scan.nextInt();
-                scan.nextLine();
+        while(typeInt < 1 || typeInt > 4){
+            System.out.println("Enter defense type");
+            System.out.println("1. Shield");
+            System.out.println("2. Armor");
 
-                defense = new Shield(absorption, energy);
-                break;
-            case 2:
-                System.out.println("Absorption:");
-                absorption = scan.nextInt();
-                scan.nextLine();
-                System.out.println("Material:");
-                String material = scan.nextLine();
+            typeInt = scan.nextInt();
+            scan.nextLine();
 
-                System.out.println("Extra weight:");
-                int extraWeight = scan.nextInt();
-                scan.nextLine();
-                defense = new Armor(absorption, material, extraWeight);
-                break;
+            switch (typeInt) {
+                case 1:
+                    System.out.println("Absorption:");
+                    absorption = scan.nextInt();
+                    scan.nextLine();
+
+                    System.out.println("Energy:");
+                    int energy = scan.nextInt();
+                    scan.nextLine();
+
+                    defense = new Shield(absorption, energy);
+                    break;
+                case 2:
+                    System.out.println("Absorption:");
+                    absorption = scan.nextInt();
+                    scan.nextLine();
+                    System.out.println("Material:");
+                    String material = scan.nextLine();
+
+                    int extraWeight = -1;
+                    while (extraWeight < 0){
+                        System.out.println("Extra weight:");
+                        extraWeight = scan.nextInt();
+                        scan.nextLine();
+                        if(extraWeight < 0){
+                            System.out.println("Invalid input");
+                        }
+                    }
+
+                    defense = new Armor(absorption, material, extraWeight);
+                    break;
+            }
         }
 
-        System.out.println("Power:");
-        int power = scan.nextInt();
+
+
+        int power = -1;
+        while (power < 0){
+            System.out.println("Power:");
+            power = scan.nextInt();
+            scan.nextLine();
+            if(power < 0){
+                System.out.println("Invalid input");
+            }
+        }
 
         return defense;
     }
