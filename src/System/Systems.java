@@ -242,10 +242,9 @@ public final class Systems implements Serializable {
     public  ArrayList<Offer> getOfferToUser(){
         ArrayList<Offer> offersUser = new ArrayList<Offer>();
         Offer offer;
-        Client client;
         for(int i=0;i<offers.size();i++) {
             offer = offers.get(i);
-            if (offer.getSeller().equals(currentUser.getUsername())){
+            if (offer.getSeller().getUsername().equals(currentUser.getUsername())){
                 offersUser.add(offer);
             }
         }

@@ -146,7 +146,7 @@ public class MenuFlow {
                     registerShip();
                     break;
                 case 4:
-                    int option4 = 1;
+                    int option4 = -1;
                     Client userCurrent = (Client) Systems.getInstance().getCurrentUser();
                     while(option4 < 1 || option4 > 5){
 
