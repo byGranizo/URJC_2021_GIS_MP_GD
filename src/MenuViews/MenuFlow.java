@@ -30,6 +30,7 @@ public class MenuFlow {
             System.out.println("3. Exit");
 
             option = scan.nextInt();
+            scan.nextLine();
 
             switch (option) {
                 case 1:
@@ -68,6 +69,7 @@ public class MenuFlow {
             System.out.println("5. Exit");
 
             option = scan.nextInt();
+            scan.nextLine();
 
             switch (option) {
                 case 1:
@@ -122,6 +124,7 @@ public class MenuFlow {
             System.out.println("8. Exit");
 
             option = scan.nextInt();
+            scan.nextLine();
 
             switch (option) {
                 case 1:
@@ -155,6 +158,7 @@ public class MenuFlow {
                         System.out.println("5. Delete my subscription");
 
                         option4 = scan.nextInt();
+                        scan.nextLine();
                         switch (option4){
                             case 1:
                                 userCurrent.setInterestedIn(ShipType.FIGHTER);
@@ -235,7 +239,7 @@ public class MenuFlow {
     private static  void registerShip(){
         Scanner scan = new Scanner(System.in);
         ArrayList<Ship> ships = new ArrayList<Ship>();
-        int option = 1;
+        int option = -1;
         while(option < 1 || option > 4){
             System.out.println("Choose and option:");
             System.out.println("1. FIGHTER");
@@ -244,6 +248,7 @@ public class MenuFlow {
             System.out.println("4. SPACE_STATION");
 
             option = scan.nextInt();
+            scan.nextLine();
             switch (option){
                 case 1:
                     ships.add(ShipCreator.createShip(ShipType.FIGHTER));
@@ -281,6 +286,7 @@ public class MenuFlow {
             System.out.println("4. Exit");
 
             option = scan.nextInt();
+            scan.nextLine();
 
             switch (option) {
                 case 1:
@@ -356,7 +362,7 @@ public class MenuFlow {
         Scanner scan = new Scanner(System.in);
         System.out.println("Choose user type:");
 
-        int option = 1;
+        int option = 0;
         UserRole role = null;
         while(option < 1 || option > 3){
 
@@ -365,6 +371,7 @@ public class MenuFlow {
             System.out.println("3. Abort");
 
             option = scan.nextInt();
+            scan.nextLine();
             switch (option) {
                 case 1:
                     role = UserRole.ADMIN;
@@ -398,11 +405,11 @@ public class MenuFlow {
         String offerId = scan.nextLine();
 
         int numberShips = -1;
-        while (numberShips >= 0){
+        while (numberShips < 0){
             System.out.println("Number of ships in the offer:");
             numberShips = scan.nextInt();
             scan.nextLine();
-            if(numberShips >= 0){
+            if(numberShips < 0){
                 System.out.println("Invalid input");
             }
         }
@@ -427,11 +434,11 @@ public class MenuFlow {
         }
 
         int price = -1;
-        while (price >= 0){
+        while (price < 0){
             System.out.println("Price:");
             price = scan.nextInt();
             scan.nextLine();
-            if(price >= 0){
+            if(price < 0){
                 System.out.println("Invalid input");
             }
         }
@@ -457,6 +464,7 @@ public class MenuFlow {
         while(points < 0 || points > 10){
             System.out.println("Punctuation out of 10:");
             points = scan.nextInt();
+            scan.nextLine();
             if(points < 0 || points > 10){
                 System.out.println("Invalid input");
             }
@@ -469,7 +477,7 @@ public class MenuFlow {
 
     public static void searOfferByType(){
         Scanner scan = new Scanner(System.in);
-        int typeInt = 1;
+        int typeInt = -1;
         String type = "";
         while(typeInt < 1 || typeInt > 4){
             System.out.println("Choose an type:");
@@ -480,6 +488,7 @@ public class MenuFlow {
             System.out.println("4. Space Station");
 
             typeInt = scan.nextInt();
+            scan.nextLine();
             switch (typeInt){
                 case 1:
                     type = "FighterShip";

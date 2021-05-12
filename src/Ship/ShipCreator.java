@@ -41,7 +41,15 @@ public class ShipCreator implements Serializable {
         int totalPower = 0;
 
         System.out.println("Register number:");
-        String registerNum = scan.nextLine();
+        String registerNum = "";
+        while(!registerNum.matches("[A-Za-z][0-9]{4}[A-Za-z]{3}")){
+            System.out.println("Enter id:");
+            registerNum = scan.nextLine();
+
+            if(!registerNum.matches("[A-Za-z][0-9]{4}[A-Za-z]{3}")){
+                System.out.println("Wrong input");
+            }
+        }
 
         Engine[] engines = createEngineArray();
 
@@ -60,7 +68,15 @@ public class ShipCreator implements Serializable {
         Scanner scan = new Scanner(System.in);
 
         System.out.println("Register number:");
-        String registerNum = scan.nextLine();
+        String registerNum = "";
+        while(!registerNum.matches("[A-Za-z][0-9]{4}[A-Za-z]{3}")){
+            System.out.println("Enter id:");
+            registerNum = scan.nextLine();
+
+            if(!registerNum.matches("[A-Za-z][0-9]{4}[A-Za-z]{3}")){
+                System.out.println("Wrong input");
+            }
+        }
 
         System.out.println("Crew size:");
         int crewSize = scan.nextInt();
@@ -87,7 +103,15 @@ public class ShipCreator implements Serializable {
         Scanner scan = new Scanner(System.in);
 
         System.out.println("Register number:");
-        String registerNum = scan.nextLine();
+        String registerNum = "";
+        while(!registerNum.matches("[A-Za-z][0-9]{4}[A-Za-z]{3}")){
+            System.out.println("Enter id:");
+            registerNum = scan.nextLine();
+
+            if(!registerNum.matches("[A-Za-z][0-9]{4}[A-Za-z]{3}")){
+                System.out.println("Wrong input");
+            }
+        }
 
         System.out.println("Crew size:");
         int crewSize = scan.nextInt();
@@ -106,13 +130,23 @@ public class ShipCreator implements Serializable {
         Scanner scan = new Scanner(System.in);
 
         System.out.println("Register number:");
-        String registerNum = scan.nextLine();
+        String registerNum = "";
+        while(!registerNum.matches("[A-Za-z][0-9]{4}[A-Za-z]{3}")){
+            System.out.println("Enter id:");
+            registerNum = scan.nextLine();
+
+            if(!registerNum.matches("[A-Za-z][0-9]{4}[A-Za-z]{3}")){
+                System.out.println("Wrong input");
+            }
+        }
 
         System.out.println("Crew size:");
         int crewSize = scan.nextInt();
+        scan.nextLine();
 
         System.out.println("Maximum passengers:");
         int maxPassengers = scan.nextInt();
+        scan.nextLine();
 
         Engine[] engines = createEngineArray();
 
@@ -134,6 +168,7 @@ public class ShipCreator implements Serializable {
         while(nEngines < 1 || nEngines > 2){
             System.out.println("Number of engines(1-2):");
             nEngines = scan.nextInt();
+            scan.nextLine();
 
             if(nEngines < 1 || nEngines > 2){
                 System.out.println("Wrong input");
@@ -150,36 +185,49 @@ public class ShipCreator implements Serializable {
     private static Engine createEngine(){
         Scanner scan = new Scanner(System.in);
 
-        System.out.println("Enter engine type");
-        System.out.println("1. curvature motor");
-        System.out.println("2. trace compressor");
-        System.out.println("3. motor FTL");
-        System.out.println("4. solar sails");
-        System.out.println("5. ionic engine");
-
         int typeInt = scan.nextInt();
+        scan.nextLine();
         EngineType type = null;
+        while(typeInt < 1 || typeInt > 5){
+            System.out.println("Enter engine type");
+            System.out.println("1. curvature motor");
+            System.out.println("2. trace compressor");
+            System.out.println("3. motor FTL");
+            System.out.println("4. solar sails");
+            System.out.println("5. ionic engine");
 
-        switch (typeInt) {
-            case 1:
-                type = EngineType.CURVATURE_MOTOR;
-                break;
-            case 2:
-                type = EngineType.TRACE_COMPRESSOR;
-                break;
-            case 3:
-                type = EngineType.MOTOR_FTL;
-                break;
-            case 4:
-                type = EngineType.SOLAR_SAILS;
-                break;
-            case 5:
-                type = EngineType.IONIC_ENGINE;
-                break;
+            typeInt = scan.nextInt();
+            scan.nextLine();
+
+            switch (typeInt) {
+                case 1:
+                    type = EngineType.CURVATURE_MOTOR;
+                    break;
+                case 2:
+                    type = EngineType.TRACE_COMPRESSOR;
+                    break;
+                case 3:
+                    type = EngineType.MOTOR_FTL;
+                    break;
+                case 4:
+                    type = EngineType.SOLAR_SAILS;
+                    break;
+                case 5:
+                    type = EngineType.IONIC_ENGINE;
+                    break;
+            }
         }
 
-        System.out.println("Speed:");
-        int speed = scan.nextInt();
+        int speed = -1;
+        while (speed < 0){
+            System.out.println("Speed:");
+            speed = scan.nextInt();
+            scan.nextLine();
+            if(speed < 0){
+                System.out.println("Invalid input");
+            }
+        }
+
 
         return new Engine(type, speed);
     }
@@ -193,6 +241,7 @@ public class ShipCreator implements Serializable {
         while(nWeapons < 1 || nWeapons > maxInt){
             System.out.println("Number of weapons(1-" + maxInt + "):");
             nWeapons = scan.nextInt();
+            scan.nextLine();
 
             if(nWeapons < 1 || nWeapons > maxInt){
                 System.out.println("Wrong input");
@@ -215,6 +264,7 @@ public class ShipCreator implements Serializable {
         System.out.println("4. PEM");
 
         int typeInt = scan.nextInt();
+        scan.nextLine();
         WeaponType type = null;
 
         switch (typeInt) {
@@ -234,6 +284,7 @@ public class ShipCreator implements Serializable {
 
         System.out.println("Power:");
         int power = scan.nextInt();
+        scan.nextLine();
 
         return new Weapon(type, power);
     }
@@ -247,6 +298,7 @@ public class ShipCreator implements Serializable {
         while(nDefenses < 1 || nDefenses > maxInt){
             System.out.println("Number of defenses(1-" + maxInt + "):");
             nDefenses = scan.nextInt();
+            scan.nextLine();
 
             if(nDefenses < 1 || nDefenses > maxInt){
                 System.out.println("Wrong input");
@@ -268,6 +320,7 @@ public class ShipCreator implements Serializable {
         System.out.println("2. Armor");
 
         int typeInt = scan.nextInt();
+        scan.nextLine();
 
         Defense defense = null;
         int absorption;
@@ -275,9 +328,11 @@ public class ShipCreator implements Serializable {
             case 1:
                 System.out.println("Absorption:");
                 absorption = scan.nextInt();
+                scan.nextLine();
 
                 System.out.println("Energy:");
                 int energy = scan.nextInt();
+                scan.nextLine();
 
                 defense = new Shield(absorption, energy);
                 break;

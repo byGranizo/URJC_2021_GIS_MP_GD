@@ -10,15 +10,8 @@ public class UserCreator implements Serializable {
 
         User user = null;
 
-        String id = "";
-        while(!id.matches("[A-Za-z][0-9]{4}[A-Za-z]{3}")){
-            System.out.println("Enter id:");
-            id = scan.nextLine();
-
-            if(!id.matches("[A-Za-z][0-9]{4}[A-Za-z]{3}")){
-                System.out.println("Wrong input");
-            }
-        }
+        System.out.println("Enter id:");
+        String id = scan.nextLine();
 
 
         System.out.println("Enter full name:");
@@ -58,6 +51,7 @@ public class UserCreator implements Serializable {
                 System.out.println("2. No");
 
                 option = scan.nextInt();
+                scan.nextLine();
 
                 switch (option) {
                     case 1:
