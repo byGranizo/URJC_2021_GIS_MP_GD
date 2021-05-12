@@ -45,7 +45,7 @@ public class UserCreator implements Serializable {
 
             int option = -1;
             boolean specialLicense = false;
-            while(option < 1 || option > 2){
+            while((option < 1 || option > 2) && !race.equals("Kromagg")){
                 System.out.println("Enter special license:");
                 System.out.println("1. Si");
                 System.out.println("2. No");

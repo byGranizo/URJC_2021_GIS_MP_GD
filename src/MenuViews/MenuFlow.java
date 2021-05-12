@@ -277,13 +277,12 @@ public class MenuFlow {
     public static void searchMenu(){
         Scanner scan = new Scanner(System.in);
         int option = -1;
-        while(option != 4){
+        while(option != 3){
             System.out.println("Choose and option:");
 
             System.out.println("1. Search by ship type");
-            System.out.println("2. Notifications");
-            System.out.println("3. Buy");
-            System.out.println("4. Exit");
+            System.out.println("2. Buy");
+            System.out.println("3. Exit");
 
             option = scan.nextInt();
             scan.nextLine();
@@ -293,9 +292,6 @@ public class MenuFlow {
                     searOfferByType();
                     break;
                 case 2:
-
-                    break;
-                case 3:
                     System.out.println("Offer Id:");
                     String offerId = scan.nextLine();
 
@@ -303,7 +299,7 @@ public class MenuFlow {
 
                     reviewUser(sellerUsername);
                     break;
-                case 4:
+                case 3:
                     System.out.println("Bye");
                     break;
                 default:
